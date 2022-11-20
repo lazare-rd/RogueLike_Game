@@ -3,9 +3,8 @@
 .Complétez les informations ci-dessous.
 [NOTE]
 ====
-* Github URL : _GIT url_
-* NOM 1 : _NOM1, Prénom1, no_étudiant1_
-* NOM 2 : _NOM2, Prénom2, no_étudiant2_
+* Github URL : https://github.com/uvsq-hal2223/cprog-td4-lazarerd
+* NOM 1 : RICOUR-DUMAS, Lazare, 22207502
 ====
 
 L'objet de ce mini-projet est de développer un jeu d'exploration de donjon de type https://fr.wikipedia.org/wiki/Rogue-like[Rogue-like].
