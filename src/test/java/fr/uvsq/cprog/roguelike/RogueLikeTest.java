@@ -1,6 +1,9 @@
 package fr.uvsq.cprog.roguelike;
 import org.junit.Test;
 import fr.uvsq.cprog.roguelike.Commandes.*;
+import fr.uvsq.cprog.roguelike.Entities.PJ;
+import fr.uvsq.cprog.roguelike.UI.UserInterface;
+
 import java.awt.Button ;
 import java.awt.event.KeyEvent ;
 

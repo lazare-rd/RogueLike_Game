@@ -1,5 +1,5 @@
 package fr.uvsq.cprog.roguelike.Commandes;
-import fr.uvsq.cprog.roguelike.Entity;
+import fr.uvsq.cprog.roguelike.Entities.Entity;
 
 public class MoveLeft implements Commande{
     private Entity entity ;

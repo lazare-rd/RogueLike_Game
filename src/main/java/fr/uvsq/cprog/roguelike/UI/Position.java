@@ -1,4 +1,4 @@
-package fr.uvsq.cprog.roguelike;
+package fr.uvsq.cprog.roguelike.UI;
 
 import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
 

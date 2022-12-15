@@ -1,5 +1,7 @@
-package fr.uvsq.cprog.roguelike;
+package fr.uvsq.cprog.roguelike.Entities;
 import java.awt.Color ;
+
+import fr.uvsq.cprog.roguelike.UI.Position;
 
 public abstract class Entity {
     protected Position position ;

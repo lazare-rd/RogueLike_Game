@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent ;
 import java.util.NoSuchElementException;
 
 import fr.uvsq.cprog.roguelike.Commandes.* ;
+import fr.uvsq.cprog.roguelike.Entities.PJ;
+import fr.uvsq.cprog.roguelike.UI.UserInterface;
 
 public class RogueLike {
     private PJ player ; 

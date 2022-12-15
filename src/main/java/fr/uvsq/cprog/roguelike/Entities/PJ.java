@@ -1,4 +1,4 @@
-package fr.uvsq.cprog.roguelike;
+package fr.uvsq.cprog.roguelike.Entities;
 
 import java.awt.Color ;
 

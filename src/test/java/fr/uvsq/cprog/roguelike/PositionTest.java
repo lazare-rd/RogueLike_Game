@@ -2,6 +2,7 @@ package fr.uvsq.cprog.roguelike;
 import org.junit.Test;
 
 import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
+import fr.uvsq.cprog.roguelike.UI.Position;
 
 public class PositionTest {
 

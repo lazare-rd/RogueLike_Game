@@ -7,6 +7,8 @@ import java.awt.Button;
 import org.junit.Test;
 
 import asciiPanel.AsciiPanel;
+import fr.uvsq.cprog.roguelike.Entities.PJ;
+import fr.uvsq.cprog.roguelike.UI.UserInterface;
 import asciiPanel.AsciiCharacterData ;
 
 import java.util.NoSuchElementException;

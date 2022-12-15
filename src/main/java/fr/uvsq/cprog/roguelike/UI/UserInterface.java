@@ -1,4 +1,4 @@
-package fr.uvsq.cprog.roguelike;
+package fr.uvsq.cprog.roguelike.UI;
 
 import javax.swing.JFrame;
 import java.awt.event.KeyListener;
@@ -6,6 +6,8 @@ import java.util.Queue;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import asciiPanel.AsciiPanel;
+import fr.uvsq.cprog.roguelike.Entities.PJ;
+
 import java.awt.Dimension ;
 import java.awt.Toolkit;
 
