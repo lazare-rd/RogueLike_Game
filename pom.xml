@@ -37,6 +37,11 @@
       <artifactId>log4j-core</artifactId>
       <version>${log4j.version}</version>
     </dependency>
+    <dependency>
+      <groupId>net.trystan</groupId>
+      <artifactId>ascii-panel</artifactId>
+      <version>1.2-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>

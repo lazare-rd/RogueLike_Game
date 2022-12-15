@@ -18,21 +18,13 @@ public enum RogueLikeApp {
     private static final Logger logger = LogManager.getLogger(RogueLikeApp.class);
 
     /**
-     * Un exemple de méthode.
-     */
-    public String getGreetings() {
-        return "Hello !";
-    }
-
-    /**
      * Cette méthode est destinée à initialiser et lancer l'exécution du programme.
      *
      * @param args les paramètres de la ligne de commande du shell
      */
     public void run(String[] args) {
-        logger.trace("Début du programme");
-        System.out.println(getGreetings());
-        logger.trace("Fin du programme");
+        RogueLike rogueLike = new RogueLike() ;
+        rogueLike.run() ;
     }
 
     /**
