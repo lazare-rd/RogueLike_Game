@@ -33,7 +33,6 @@ public class PositionTest {
 
     @Test
     public void moveDownAndRightBorderTest() throws IllegalPositionException{
-        Position.setBounds(100, 100);
         int x = Position.getMaxWidth() ;
         int y = Position.getMaxHeight() ;
         Position p = new Position(x, y);

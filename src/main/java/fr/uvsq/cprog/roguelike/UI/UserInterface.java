@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import asciiPanel.AsciiPanel;
 import fr.uvsq.cprog.roguelike.Entities.PJ;
+import fr.uvsq.cprog.roguelike.World.World;
+import java.awt.Color;
 
 import java.awt.Dimension ;
 import java.awt.Toolkit;
@@ -17,12 +19,8 @@ public class UserInterface extends JFrame implements KeyListener{
 
     private final Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
-    private final double pixelHeight = 0.058 ;
-    private final double pixelWidth = 0.11 ;
-    private final int screenHeight = (int)dimension.getHeight() ;
-    private final int screenWidth = (int)dimension.getWidth() ;
-    private final int pixelsInHeight = (int)(pixelHeight*screenHeight);
-    private final int pixelsInWidth = (int)(pixelWidth*screenWidth);
+    public static final int pixelsInHeight = 48;
+    public static final int pixelsInWidth = 104;
 
     public UserInterface(){
         super("Roguelike");
@@ -34,7 +32,6 @@ public class UserInterface extends JFrame implements KeyListener{
         this.setSize(dimension);
         super.addKeyListener(this);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Position.setBounds(pixelsInWidth, pixelsInHeight);
     }
 
     public AsciiPanel getTerminal(){
@@ -45,8 +42,21 @@ public class UserInterface extends JFrame implements KeyListener{
         this.terminal.write(player.getGlyph(), player.getPos().getX(), player.getPos().getY(), player.getColor());
     }
 
+    public void drawWorld(World world){
+        char[][] grid = world.generateCharGrid() ;
+        for(int x = 0 ; x < pixelsInWidth ; x++){
+            for (int y = 0 ; y < pixelsInHeight ; y++){
+                this.terminal.write(grid[x][y], x, y, Color.WHITE);
+            }
+        }
+    }
+
     public void clear(){
         this.terminal.clear() ;
+    }
+
+    public void clearPJ(PJ perso){
+        this.terminal.clear(' ', perso.getPos().getX(), perso.getPos().getY(), 1, 1) ;
     }
 
     public void repaint(){
