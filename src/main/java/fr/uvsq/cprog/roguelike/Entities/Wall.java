@@ -8,7 +8,7 @@ public class Wall extends Entity{
 
     public Wall(int x, int y){
         try {
-            super.color = Color.BLUE ;
+            super.color = Color.WHITE ;
             super.glyph = '#' ;
             super.position = new Position(x, y) ;
         } catch (IllegalPositionException e) {

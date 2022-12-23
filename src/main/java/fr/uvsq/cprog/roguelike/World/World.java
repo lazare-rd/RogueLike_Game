@@ -2,6 +2,7 @@ package fr.uvsq.cprog.roguelike.World;
 
 import java.util.Random;
 
+import asciiPanel.AsciiCharacterData;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
 
 
@@ -17,11 +18,19 @@ public class World {
                                   {0, 0, 0, 0, 0, 0},
                                   {0, 0, 0, 0, 0, 0},
                                   {0, 0, 0, 0, 0, 0}};
+    private int level ;
     private static final Random r = new Random() ;
 
 
-    public World(){
-        this.layout = new Worldstructure(width, height) ;
+    public World(int level){
+        if (level >= 0 && level < 14){
+            this.level = level;
+            this.layout = new Worldstructure(width, height, level) ; 
+        }
+        else{
+            this.level = 0 ;
+            this.layout = new Worldstructure(width, height, 0) ;
+        }
         generateWorld();
     }
 
@@ -125,7 +134,7 @@ public class World {
         }
     }
 
-    public char[][] generateCharGrid(){
+    public AsciiCharacterData[][] generateCharGrid(){
         return this.layout.generateCharGrid();
     }
     
@@ -142,7 +151,7 @@ public class World {
     }
 
     private static void seeRoomLayout(){
-        World world = new World();
+        World world = new World(0);
         for (int x = 0 ; x<6 ; x++){
             for (int y = 0 ; y<8 ; y++){
                 System.out.print(world.roomLayout[y][x] + " ");

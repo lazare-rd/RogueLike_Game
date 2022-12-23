@@ -20,21 +20,24 @@ public class Figure extends Entity{
         }
     }
 
-    public int getLifePoints(){
-        return this.lifePoints ;
-    }
-
-    public void removeOneLifePoint(){
+    public void removeOneLife(){
         if (this.lifePoints - 1 == 0){
-            kill(this);
+            kill();
         }
         else{
             this.lifePoints -= 1 ;
         }
     }
 
-    private static void kill(Figure fig){
-        fig = null ;
-        System.gc();
+    public int getLifePoints(){
+        return this.lifePoints ;
+    }
+    
+    private static void kill(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

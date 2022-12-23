@@ -3,25 +3,32 @@ import fr.uvsq.cprog.roguelike.Entities.Entity;
 import fr.uvsq.cprog.roguelike.World.World;
 import fr.uvsq.cprog.roguelike.UI.Position;
 import fr.uvsq.cprog.roguelike.Entities.Wall;
+import fr.uvsq.cprog.roguelike.Entities.Figure;
+import fr.uvsq.cprog.roguelike.Entities.Zombie;
 
 public class MoveRight implements Commande{
-    private Entity entity ;
+    private Figure figure ;
     private World world ;
 
-    public MoveRight(Entity entity, World world){
-        this.entity = entity ; 
+    public MoveRight(Figure figure, World world){
+        this.figure = figure ; 
         this.world = world ;
     }
 
     @Override
     public void execute(){
         Entity[][] layout = this.world.getLayout().getData() ;
-        Position posRight = this.entity.getPos().getPosOnTheRight() ;
+        Position posRight = this.figure.getPos().getPosOnTheRight() ;
         int x = posRight.getX() ;
         int y = posRight.getY() ;
-        if ( !(layout[x][y] instanceof Wall) ){
-            this.entity.getPos().moveRight();
-            this.entity.setView("RIGHT");
+        if ( layout[x][y] instanceof Zombie ){
+            this.figure.setView("RIGHT");
+            this.figure.removeOneLife();
+            this.figure.getPos().moveRight();
+        }
+        else if ( !(layout[x][y] instanceof Wall) ){
+            this.figure.getPos().moveRight();
+            this.figure.setView("RIGHT");
         }
     }
 }

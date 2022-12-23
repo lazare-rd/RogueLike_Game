@@ -1,6 +1,7 @@
 package fr.uvsq.cprog.roguelike;
 import org.junit.Test;
 
+import asciiPanel.AsciiCharacterData;
 import fr.uvsq.cprog.roguelike.Entities.Entity;
 import fr.uvsq.cprog.roguelike.Entities.NullEntity;
 import fr.uvsq.cprog.roguelike.Entities.Wall;
@@ -10,7 +11,7 @@ public class WorldStructureTest {
 
     @Test
     public void constructorTest(){
-        Worldstructure ws = new Worldstructure(8, 6) ;
+        Worldstructure ws = new Worldstructure(8, 6, 0) ;
         assert(ws.getRoomHeight() == 1);
         assert(ws.getRoomWidth() == 1);
         assert(checkDataInitiation(ws.getData(), 8, 6));
@@ -18,7 +19,7 @@ public class WorldStructureTest {
 
     @Test
     public void addRoom0Test(){
-        Worldstructure ws = new Worldstructure(104,48) ;
+        Worldstructure ws = new Worldstructure(104,48, 0) ;
         ws.addRoom0(0, 0);
         Entity[][] data = ws.getData() ;
         assert(checkUpperRow(data, false));
@@ -29,7 +30,7 @@ public class WorldStructureTest {
 
     @Test
     public void addRoom1Test(){
-        Worldstructure ws = new Worldstructure(104, 48) ;
+        Worldstructure ws = new Worldstructure(104, 48, 0) ;
         ws.addRoom1(0, 0);
         Entity[][] data = ws.getData() ;
         assert(checkUpperRow(data, false));
@@ -40,7 +41,7 @@ public class WorldStructureTest {
 
     @Test
     public void addRoom2Test(){
-        Worldstructure ws = new Worldstructure(104, 48) ;
+        Worldstructure ws = new Worldstructure(104, 48, 0) ;
         ws.addRoom2(0, 0);
         Entity[][] data = ws.getData() ;
         assert(checkUpperRow(data, true));
@@ -51,7 +52,7 @@ public class WorldStructureTest {
 
     @Test
     public void addRoom3Test(){
-        Worldstructure ws = new Worldstructure(104, 48) ;
+        Worldstructure ws = new Worldstructure(104, 48, 0) ;
         ws.addRoom3(0, 0);
         Entity[][] data = ws.getData() ;
         assert(checkUpperRow(data, true));
@@ -62,8 +63,8 @@ public class WorldStructureTest {
 
     @Test
     public void generateCharGridTest(){
-        Worldstructure ws = new Worldstructure(3, 3);
-        char[][] grid = ws.generateCharGrid() ;
+        Worldstructure ws = new Worldstructure(3, 3, 0);
+        AsciiCharacterData[][] grid = ws.generateCharGrid() ;
         assert(checkCharGrid(grid));
     }
 
@@ -178,10 +179,10 @@ public class WorldStructureTest {
         return true ;
     }
 
-    private boolean checkCharGrid(char[][] grid){
+    private boolean checkCharGrid(AsciiCharacterData[][] grid){
         for (int i = 0 ; i<grid.length ; i++ ){
             for (int j = 0 ; j<grid[0].length ; j++){
-                if (grid[i][j] != ' '){
+                if (grid[i][j].character != ' '){
                     return false ;
                 }
             }

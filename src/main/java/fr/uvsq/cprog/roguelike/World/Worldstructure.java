@@ -1,7 +1,9 @@
 package fr.uvsq.cprog.roguelike.World;
 
+import java.awt.Color;
 import java.util.Random;
 
+import asciiPanel.AsciiCharacterData;
 import fr.uvsq.cprog.roguelike.Entities.*;
 
 public class Worldstructure {
@@ -11,13 +13,15 @@ public class Worldstructure {
     private int roomWidth ;
     private Entity[][] data ;
     private static final Random r = new Random() ;
+    private int level ;
 
-    public Worldstructure(int width, int height){
+    public Worldstructure(int width, int height, int level){
         this.width = width ;
         this.height = height ;
         this.roomHeight = (int)(height/6) ;
         this.roomWidth = (int)(width/8) ;
         this.data = initiateData(width, height);
+        this.level = 14 - level ;
     }
 
     public int getRoomHeight(){
@@ -43,6 +47,7 @@ public class Worldstructure {
 
     public void addRoom1(int xStart, int yStart){
         generateInnerRoom(xStart, yStart);
+        addZombies(xStart, yStart, level);
         
         generateNullCollumn(xStart, yStart);
         generateNullCollumn(xStart+roomWidth - 1, yStart);
@@ -52,6 +57,7 @@ public class Worldstructure {
 
     public void addRoom2(int xStart, int yStart){ //Has exits on the left, right and bottom, if there is another 2 above, it also has a top exit
         generateInnerRoom(xStart, yStart);
+        addZombies(xStart, yStart, level);
 
         generateNullCollumn(xStart, yStart); 
         generateNullCollumn(xStart+roomWidth - 1, yStart); 
@@ -61,6 +67,7 @@ public class Worldstructure {
 
     public void addRoom3(int xStart, int yStart){ //Has exits on the left, right and top.
         generateInnerRoom(xStart, yStart);
+        addZombies(xStart, yStart, level);
 
         generateNullCollumn(xStart, yStart);
         generateNullCollumn(xStart+roomWidth - 1, yStart); 
@@ -69,11 +76,11 @@ public class Worldstructure {
 
     } 
 
-    public char[][] generateCharGrid(){
-        char[][] grid = new char[width][height];
+    public AsciiCharacterData[][] generateCharGrid(){
+        AsciiCharacterData[][] grid = new AsciiCharacterData[width][height];
         for (int x=0 ; x<width ; x++){
             for (int y=0; y<height ; y++){
-                grid[x][y] = this.data[x][y].getGlyph();
+                grid[x][y] = new AsciiCharacterData(this.data[x][y].getGlyph(), this.data[x][y].getColor(), Color.BLACK);
             }
         }
         return grid ;
@@ -140,6 +147,16 @@ public class Worldstructure {
     private void generateWallCollumn(int xStart, int yStart){
         for (int y = yStart ; y < yStart + roomHeight ; y++){
             this.data[xStart][y] = new Wall(xStart, y);
+        }
+    }
+
+    private void addZombies(int xStart, int yStart, int seed){
+        for (int i = xStart + 2 ; i<xStart + roomWidth - 4 ; i++){
+            for(int j = yStart + 2 ; j<yStart + roomHeight - 4 ; j++){
+                if (r.nextInt(seed) == 0){
+                    this.data[i][j] = new Zombie(i, j) ;
+                }
+            }
         }
     }
 }

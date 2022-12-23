@@ -19,7 +19,7 @@ public class RogueLike {
     public RogueLike(){
         this.player = new PJ(1, 1, '@', Color.RED);
         this.ui = new UserInterface() ;
-        this.world = new World();
+        this.world = new World(0);
     }
 
     public UserInterface getUi(){
@@ -88,5 +88,4 @@ public class RogueLike {
             }
         }
     }
-
 }

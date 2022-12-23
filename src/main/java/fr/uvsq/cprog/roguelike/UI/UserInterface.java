@@ -5,10 +5,12 @@ import java.awt.event.KeyListener;
 import java.util.Queue;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
+
+import asciiPanel.AsciiCharacterData;
 import asciiPanel.AsciiPanel;
 import fr.uvsq.cprog.roguelike.Entities.PJ;
 import fr.uvsq.cprog.roguelike.World.World;
-import java.awt.Color;
+import java.awt.Color ;
 
 import java.awt.Dimension ;
 import java.awt.Toolkit;
@@ -27,7 +29,7 @@ public class UserInterface extends JFrame implements KeyListener{
 
         this.inputQueue = new LinkedList<>() ;
 
-        this.terminal = new AsciiPanel(pixelsInWidth, pixelsInHeight);
+        this.terminal = new AsciiPanel(pixelsInWidth + 30, pixelsInHeight);
         this.add(terminal) ;
         this.setSize(dimension);
         super.addKeyListener(this);
@@ -40,14 +42,22 @@ public class UserInterface extends JFrame implements KeyListener{
 
     public void drawPJ(PJ player){
         this.terminal.write(player.getGlyph(), player.getPos().getX(), player.getPos().getY(), player.getColor());
+        for (int i=0 ; i<player.getLifePoints()*2 ; i+=2){
+            this.terminal.write('<', pixelsInWidth + 10 + i, 1, Color.RED);
+            this.terminal.write('3', pixelsInWidth + 11 + i, 1, Color.RED);
+        }
     }
 
     public void drawWorld(World world){
-        char[][] grid = world.generateCharGrid() ;
+        AsciiCharacterData[][] grid = world.generateCharGrid() ;
         for(int x = 0 ; x < pixelsInWidth ; x++){
             for (int y = 0 ; y < pixelsInHeight ; y++){
-                this.terminal.write(grid[x][y], x, y, Color.WHITE);
+                this.terminal.write(grid[x][y].character, x, y, grid[x][y].foregroundColor);
             }
+        }
+        char[] lives = {' ', 'L', 'I', 'V', 'E', 'S', ' ', ':', ' '};
+        for (int i = 0; i<lives.length ; i++){
+            this.terminal.write(lives[i], pixelsInWidth + 1 + i , 1, Color.RED);
         }
     }
 
@@ -55,8 +65,9 @@ public class UserInterface extends JFrame implements KeyListener{
         this.terminal.clear() ;
     }
 
-    public void clearPJ(PJ perso){
-        this.terminal.clear(' ', perso.getPos().getX(), perso.getPos().getY(), 1, 1) ;
+    public void clearPJ(PJ player){
+        this.terminal.clear(' ', player.getPos().getX(), player.getPos().getY(), 1, 1) ;
+        this.terminal.clear(' ', pixelsInWidth + 9, 1, 15, 1);
     }
 
     public void repaint(){

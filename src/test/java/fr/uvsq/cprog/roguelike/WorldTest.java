@@ -9,13 +9,13 @@ public class WorldTest {
 
     @Test
     public void constuctorTest(){
-        new World();
+        new World(0);
     }
 
     @Test
     public void isThereAWayOutTest(){
         for (int i=0 ; i<20 ; i++){
-            World world = new World() ;
+            World world = new World(0) ;
             assert(findWayOut(world));
         } 
     }
@@ -23,7 +23,7 @@ public class WorldTest {
     @Test
     public void isThereANullElement(){
         for (int i=0 ; i<20 ; i++){
-            World world = new World() ;
+            World world = new World(0) ;
             assert( !(findNullElement(world)) );
         } 
     }
