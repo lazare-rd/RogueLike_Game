@@ -4,11 +4,14 @@ import java.util.Random;
 
 import asciiPanel.AsciiCharacterData;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
+import fr.uvsq.cprog.roguelike.Entities.Door;
 
 
 public class World {
-    private static int width = UserInterface.pixelsInWidth ;
-    private static int height = UserInterface.pixelsInHeight ; 
+    private int width = UserInterface.pixelsInWidth ;
+    private int height = UserInterface.pixelsInHeight ; 
+    private int roomHeight = UserInterface.pixelsInRoomHeight ; 
+    private int roomWidth = UserInterface.pixelsInRoomWidth ;
     private Worldstructure layout ;
     private int[][] roomLayout = {{0, 0, 0, 0, 0, 0},
                                   {0, 0, 0, 0, 0, 0},
@@ -34,12 +37,20 @@ public class World {
         generateWorld();
     }
 
+    public static void updateWorld(World world){
+        
+    }
+
     public Worldstructure getLayout(){
         return this.layout ;
     }
 
     public int[][] getRoomLayout(){
         return this.roomLayout ;
+    }
+
+    public int getLevel(){
+        return this.level ;
     }
 
     private void generateWorld(){
@@ -63,6 +74,41 @@ public class World {
             }
         }
         fillVoidRooms();
+        placeDoor();
+    }
+
+    private void placeDoor(){
+        int j = roomLayout[0].length - 1;
+        int iBefore3 = 0 ;
+        int iAfter3 = 0 ;
+        int nBefore3 = 0 ; 
+        int nAfter3 = 0 ;
+        boolean isPassed = false ;
+        for (int i = 0 ; i<roomLayout.length ; i++){
+            if (roomLayout[i][j] == 3){
+                iAfter3 = i ;
+                isPassed = true ;
+            }
+            else if (roomLayout[i][j] == 1){
+                if (!(isPassed)){
+                    iAfter3 = i ;
+                    nAfter3 += 1 ; 
+                }
+                else{
+                    iBefore3 = i ;
+                    nBefore3 += 1 ;
+                }
+            }   
+        }
+        if (nAfter3 > nBefore3){
+            this.layout.addEntity(iAfter3*roomWidth + 1 + r.nextInt(11), j*roomHeight + 1, new Door(iAfter3, j));
+        }
+        else if (nAfter3 <= nBefore3 && nBefore3 != 0){
+            this.layout.addEntity(iBefore3*roomWidth + 1 + r.nextInt(11), j*roomHeight + 1, new Door(iBefore3, j));
+        }
+        else{
+            this.layout.addEntity(iAfter3*roomWidth + 1 + r.nextInt(11), j*roomHeight + 1, new Door(iAfter3, j));
+        }
     }
 
     private boolean caseLeft(SolutionPath path, int w, int h){

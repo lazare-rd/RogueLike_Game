@@ -7,6 +7,7 @@ import fr.uvsq.cprog.roguelike.UI.Position;
 
 public class Figure extends Entity{
     private int lifePoints ;
+    private int coins ;
 
     public Figure(int x, int y, char glyph, Color color){
         try {
@@ -15,9 +16,22 @@ public class Figure extends Entity{
             super.color = color ;
             super.view = "RIGHT" ;
             this.lifePoints = 3 ;
+            this.coins = 0 ;
         } catch (IllegalPositionException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getCoins(){
+        return this.coins ;
+    }
+
+    public void setCoins(int coins){
+        this.coins = coins ;
+    }
+
+    public void addOneCoin(){
+        this.coins+=1 ;
     }
 
     public void removeOneLife(){
@@ -31,6 +45,10 @@ public class Figure extends Entity{
 
     public int getLifePoints(){
         return this.lifePoints ;
+    }
+
+    public void setLifePoints(int lifePoints){
+        this.lifePoints = lifePoints ;
     }
     
     private static void kill(){

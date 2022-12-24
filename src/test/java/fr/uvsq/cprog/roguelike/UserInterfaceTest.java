@@ -36,7 +36,7 @@ public class UserInterfaceTest {
 
     @Test
     public void drawPjTest(){
-        ui.drawPJ(player);
+        ui.drawFig(player);
         AsciiPanel panel = ui.getTerminal() ;
         AsciiCharacterData[][] characters = panel.getCharacters() ;
 

@@ -16,6 +16,7 @@ public class FigureTest {
         assert(fig.getColor() == Color.BLACK);
         assert(fig.getView() == "RIGHT");
         assert(fig.getLifePoints() == 3);
+        assert(fig.getCoins() == 0);
     }
 
     @Test
@@ -23,5 +24,21 @@ public class FigureTest {
         Figure fig = new Figure(0, 0, '@', Color.BLACK);
         fig.removeOneLife();
         assert(fig.getLifePoints() == 2);
+    }
+
+    @Test
+    public void addOneCoinTest(){
+        Figure fig = new Figure(0, 0, '@', Color.BLACK);
+        fig.addOneCoin();
+        assert(fig.getCoins() == 1);
+    }
+
+    @Test
+    public void settersTest(){
+        Figure fig = new Figure(0, 0, '@', Color.BLACK);
+        fig.setCoins(100);
+        fig.setLifePoints(100);
+        assert(fig.getCoins() == 100);
+        assert(fig.getLifePoints() == 100);
     }
 }   

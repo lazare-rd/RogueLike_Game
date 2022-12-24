@@ -22,6 +22,18 @@ public class RogueLike {
         this.world = new World(0);
     }
 
+    public void updateGame(){
+        int coins = this.player.getCoins();
+        int lives = this.player.getLifePoints() ;
+        
+        this.player = new PJ(1, 1, '@', Color.RED);
+        this.player.setCoins(coins);
+        this.player.setLifePoints(lives);
+
+        this.ui = new UserInterface() ;
+        this.world = new World(this.world.getLevel() + 1);
+    }
+
     public UserInterface getUi(){
         return this.ui ;
     }
@@ -37,13 +49,13 @@ public class RogueLike {
     public Commande processInput(KeyEvent event){
         switch(event.getKeyCode()){
             case KeyEvent.VK_LEFT :
-                return new MoveLeft(this.player, this.world);
+                return new MoveLeft(this);
             case KeyEvent.VK_RIGHT :
-                return new MoveRight(this.player, this.world);
+                return new MoveRight(this);
             case KeyEvent.VK_UP :
-                return new MoveUp(this.player, this.world);
+                return new MoveUp(this);
             case KeyEvent.VK_DOWN :
-                return new MoveDown(this.player, this.world);
+                return new MoveDown(this);
             case KeyEvent.VK_Q : 
                 return new Quit();
             case KeyEvent.VK_SPACE:
@@ -54,11 +66,11 @@ public class RogueLike {
     }
 
     public void preRender(){
-        ui.clearPJ(this.player);
+        ui.clearFig(this.player);
     }
 
     public void render(){
-        ui.drawPJ(this.player);
+        ui.drawFig(this.player);
         ui.repaint();
     }
 

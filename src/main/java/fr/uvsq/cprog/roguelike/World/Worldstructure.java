@@ -48,6 +48,7 @@ public class Worldstructure {
     public void addRoom1(int xStart, int yStart){
         generateInnerRoom(xStart, yStart);
         addZombies(xStart, yStart, level);
+        addCoins(xStart, yStart);
         
         generateNullCollumn(xStart, yStart);
         generateNullCollumn(xStart+roomWidth - 1, yStart);
@@ -58,6 +59,7 @@ public class Worldstructure {
     public void addRoom2(int xStart, int yStart){ //Has exits on the left, right and bottom, if there is another 2 above, it also has a top exit
         generateInnerRoom(xStart, yStart);
         addZombies(xStart, yStart, level);
+        addCoins(xStart, yStart);
 
         generateNullCollumn(xStart, yStart); 
         generateNullCollumn(xStart+roomWidth - 1, yStart); 
@@ -68,13 +70,18 @@ public class Worldstructure {
     public void addRoom3(int xStart, int yStart){ //Has exits on the left, right and top.
         generateInnerRoom(xStart, yStart);
         addZombies(xStart, yStart, level);
+        addCoins(xStart, yStart);
 
         generateNullCollumn(xStart, yStart);
         generateNullCollumn(xStart+roomWidth - 1, yStart); 
         generateNullRow(xStart, yStart);
         generateWallRow(xStart, yStart+roomHeight - 1);
 
-    } 
+    }
+    
+    public void addEntity(int x, int y, Entity ent){
+        data[x][y] = ent ;
+    }
 
     public AsciiCharacterData[][] generateCharGrid(){
         AsciiCharacterData[][] grid = new AsciiCharacterData[width][height];
@@ -155,6 +162,16 @@ public class Worldstructure {
             for(int j = yStart + 2 ; j<yStart + roomHeight - 4 ; j++){
                 if (r.nextInt(seed) == 0){
                     this.data[i][j] = new Zombie(i, j) ;
+                }
+            }
+        }
+    }
+
+    private void addCoins(int xStart, int yStart){
+        for (int i = xStart + 2 ; i<xStart + roomWidth - 4 ; i++){
+            for(int j = yStart + 2 ; j<yStart + roomHeight - 4 ; j++){
+                if (r.nextInt(25) == 0){
+                    this.data[i][j] = new Coin(i, j) ;
                 }
             }
         }

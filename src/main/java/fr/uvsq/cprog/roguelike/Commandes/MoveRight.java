@@ -6,13 +6,21 @@ import fr.uvsq.cprog.roguelike.Entities.Wall;
 import fr.uvsq.cprog.roguelike.Entities.Figure;
 import fr.uvsq.cprog.roguelike.Entities.Zombie;
 
+
+import fr.uvsq.cprog.roguelike.RogueLike;
+import fr.uvsq.cprog.roguelike.Entities.Coin;
+import fr.uvsq.cprog.roguelike.Entities.Door;
+
+
 public class MoveRight implements Commande{
     private Figure figure ;
     private World world ;
+    private RogueLike rg ;
 
-    public MoveRight(Figure figure, World world){
-        this.figure = figure ; 
-        this.world = world ;
+    public MoveRight(RogueLike rg){
+        this.rg = rg ;
+        this.figure = rg.getPJ() ; 
+        this.world = rg.getWorld() ;
     }
 
     @Override
@@ -25,6 +33,15 @@ public class MoveRight implements Commande{
             this.figure.setView("RIGHT");
             this.figure.removeOneLife();
             this.figure.getPos().moveRight();
+        }
+        else if ( layout[x][y] instanceof Door ){
+            rg.updateGame();
+            rg.run();
+        }
+        else if ( layout[x][y] instanceof Coin ){
+            this.figure.getPos().moveRight();
+            this.figure.setView("RIGHT");
+            this.figure.addOneCoin();
         }
         else if ( !(layout[x][y] instanceof Wall) ){
             this.figure.getPos().moveRight();

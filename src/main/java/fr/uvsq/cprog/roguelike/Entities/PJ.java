@@ -7,6 +7,5 @@ public class PJ extends Figure{
     public PJ(int x, int y, char glyph, Color color){
         super(x, y, glyph, color);
     }
-
 }
 
