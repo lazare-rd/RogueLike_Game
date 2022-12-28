@@ -14,6 +14,7 @@ import java.awt.Color ;
 
 import java.awt.Dimension ;
 import java.awt.Toolkit;
+import java.io.File;
 
 public class UserInterface extends JFrame implements KeyListener{
     private Queue<KeyEvent> inputQueue ;
@@ -71,6 +72,30 @@ public class UserInterface extends JFrame implements KeyListener{
             this.terminal.write(level[i], pixelsInWidth + 1 + i , 5, Color.CYAN);
         }
         this.terminal.write(String.valueOf(world.getLevel()), pixelsInWidth + 10, 5, Color.CYAN);
+    }
+
+    public void drawWelcome(){
+        String[] fileNames = getNamesOfSavedGames();
+        this.terminal.write("  # #     # # #     # #   #             #   # # #    # #    # # # # #   # # # #  ", 25, 10, Color.CYAN); //84
+        this.terminal.write(" #   #    #  #     #   #   #           #    #   #   #   #         #     #        ", 25, 11, Color.CYAN);
+        this.terminal.write(" # # #    # #      #   #    #    #    #     # # #   # # #       #       # # # #  ", 25, 12, Color.CYAN);
+        this.terminal.write(" #   #    #   #    #   #     #  # #  #      #   #   #   #     #         #        ", 25, 13, Color.CYAN);
+        this.terminal.write(" #   #    #    #    # #       #     #       # # #   #   #   # # # # #   # # # #  ", 25, 14, Color.CYAN);
+        
+        for (int i = 0 ; i<fileNames.length ; i++){
+            this.terminal.write(fileNames[i], 25, 17+i, Color.CYAN);
+        }
+    }
+
+    public String[] getNamesOfSavedGames(){
+        File f = new File("savedGames");
+        File[] files = f.listFiles();
+        String[] fileNames = new String[files.length + 1];
+        fileNames[0] = "New Game" ;
+        for (int i = 0 ; i<files.length ; i++){
+            fileNames[i+1] = files[i].getName();
+        }
+        return fileNames ;
     }
 
     public void clear(){

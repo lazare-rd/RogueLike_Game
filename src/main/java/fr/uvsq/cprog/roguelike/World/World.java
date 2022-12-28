@@ -1,5 +1,6 @@
 package fr.uvsq.cprog.roguelike.World;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import asciiPanel.AsciiCharacterData;
@@ -7,7 +8,7 @@ import fr.uvsq.cprog.roguelike.UI.UserInterface;
 import fr.uvsq.cprog.roguelike.Entities.Door;
 
 
-public class World {
+public class World implements Serializable{
     private int width = UserInterface.pixelsInWidth ;
     private int height = UserInterface.pixelsInHeight ; 
     private int roomHeight = UserInterface.pixelsInRoomHeight ; 

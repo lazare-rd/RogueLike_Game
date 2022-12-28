@@ -1,82 +1,55 @@
 package fr.uvsq.cprog.roguelike;
 
-import java.awt.Color;
-import java.awt.event.KeyEvent ;
+import fr.uvsq.cprog.roguelike.UI.UserInterface;
+import fr.uvsq.cprog.roguelike.Entities.Cursor;
+import java.awt.event.KeyEvent;
 import java.util.NoSuchElementException;
 
-import fr.uvsq.cprog.roguelike.Commandes.* ;
-import fr.uvsq.cprog.roguelike.Entities.PJ;
-import fr.uvsq.cprog.roguelike.UI.UserInterface;
-import fr.uvsq.cprog.roguelike.World.World;
+import fr.uvsq.cprog.roguelike.Commandes.*;
 
 public class RogueLike {
-    private PJ player ; 
     private UserInterface ui ;
-    private World world ;
-
-    private final long timePerFrame = 8333333 ;
-
+    private Board board ;
+    private Cursor cursor ;
+    private String[] fileNames ;
+    
     public RogueLike(){
-        this.player = new PJ(1, 1, '@', Color.RED);
-        this.ui = new UserInterface() ;
-        this.world = new World(0);
-    }
-
-    public void updateGame(){
-        int coins = this.player.getCoins();
-        int lives = this.player.getLifePoints() ;
-        
-        this.player = new PJ(1, 1, '@', Color.RED);
-        this.player.setCoins(coins);
-        this.player.setLifePoints(lives);
-
-        this.ui = new UserInterface() ;
-        this.world = new World(this.world.getLevel() + 1);
-    }
-
-    public UserInterface getUi(){
-        return this.ui ;
-    }
-
-    public PJ getPJ(){
-        return this.player ;
-    }
-
-    public World getWorld(){
-        return this.world ;
+        this.ui = new UserInterface();
+        this.cursor = new Cursor(35, 17);
+        this.fileNames = this.ui.getNamesOfSavedGames();
     }
 
     public Commande processInput(KeyEvent event){
         switch(event.getKeyCode()){
-            case KeyEvent.VK_LEFT :
-                return new MoveLeft(this);
-            case KeyEvent.VK_RIGHT :
-                return new MoveRight(this);
-            case KeyEvent.VK_UP :
-                return new MoveUp(this);
-            case KeyEvent.VK_DOWN :
-                return new MoveDown(this);
-            case KeyEvent.VK_Q : 
+            case KeyEvent.VK_ENTER :
+                this.board = Board.deserialize(getFileSelected());
+                return new InitGame(this.board);
+            case KeyEvent.VK_Q :
                 return new Quit();
-            case KeyEvent.VK_SPACE:
-                return new Shoot();
+            case KeyEvent.VK_UP :
+                return new MoveUpCursor(this.cursor, getFileNamesWidth(this.fileNames));
+            case KeyEvent.VK_DOWN :
+                return new MoveDownCursor(this.cursor, getFileNamesWidth(this.fileNames));
             default :
-                return new NullCommande() ;
-            }
+                return new NullCommande();
+        }
     }
 
-    public void preRender(){
-        ui.clearFig(this.player);
+    private int[] getFileNamesWidth(String[] f){
+        int[] widths = new int[f.length];
+        for (int i = 0 ; i<f.length ; i++){
+            widths[i] = f[i].length() + 27;
+        }
+        return widths ;
     }
 
-    public void render(){
-        ui.drawFig(this.player);
-        ui.repaint();
+    private String getFileSelected(){
+        return fileNames[cursor.getPos().getY() - 17];
     }
 
     public void run(){
         boolean loop = true ;
-        this.ui.drawWorld(this.world);
+        this.ui.drawWelcome();
         this.ui.showUi();
         while(loop){
             long timeBeforeFrame = System.nanoTime() ;
@@ -90,7 +63,7 @@ public class RogueLike {
                 this.render();
             }
             long timeAfterFrame = System.nanoTime() ;
-            long sleepTime = timePerFrame - (timeAfterFrame - timeBeforeFrame) ;
+            long sleepTime = Board.timePerFrame - (timeAfterFrame - timeBeforeFrame) ;
             if (sleepTime > 0){
                 try {
                     Thread.sleep(sleepTime / 100000);
@@ -99,5 +72,15 @@ public class RogueLike {
                 }
             }
         }
+    }
+
+    private void render(){
+        ui.drawFig(this.cursor);
+        this.ui.getTerminal().write(' ', UserInterface.pixelsInWidth + 10 , 3 );
+        ui.repaint();
+    }
+
+    private void preRender(){
+        ui.clearFig(this.cursor);
     }
 }

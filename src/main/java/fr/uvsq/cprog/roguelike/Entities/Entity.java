@@ -1,9 +1,10 @@
 package fr.uvsq.cprog.roguelike.Entities;
 import java.awt.Color ;
+import java.io.Serializable;
 
 import fr.uvsq.cprog.roguelike.UI.Position;
 
-public abstract class Entity {
+public abstract class Entity implements Serializable{
     protected Position position ;
     protected char glyph ; 
     protected Color color ;

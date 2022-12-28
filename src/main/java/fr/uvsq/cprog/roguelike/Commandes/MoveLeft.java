@@ -5,16 +5,16 @@ import fr.uvsq.cprog.roguelike.UI.Position;
 import fr.uvsq.cprog.roguelike.Entities.Wall;
 import fr.uvsq.cprog.roguelike.Entities.Figure;
 import fr.uvsq.cprog.roguelike.Entities.Zombie;
-import fr.uvsq.cprog.roguelike.RogueLike;
+import fr.uvsq.cprog.roguelike.Board;
 import fr.uvsq.cprog.roguelike.Entities.Coin;
 import fr.uvsq.cprog.roguelike.Entities.Door;
 
 public class MoveLeft implements Commande{
     private Figure figure ;
     private World world ;
-    private RogueLike rg ;
+    private Board rg ;
 
-    public MoveLeft(RogueLike rg){
+    public MoveLeft(Board rg){
         this.rg = rg ;
         this.figure = rg.getPJ() ; 
         this.world = rg.getWorld() ;

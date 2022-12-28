@@ -1,8 +1,10 @@
 package fr.uvsq.cprog.roguelike.UI;
 
+import java.io.Serializable;
+
 import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
 
-public class Position {
+public class Position implements Serializable{
     private int posX ;
     private int posY ;
 
@@ -31,6 +33,14 @@ public class Position {
 
     public int getY(){
         return posY ;
+    }
+
+    public void setX(int x){
+        this.posX = x ;
+    }
+
+    public void setY(int y){
+        this.posY = y ;
     }
 
     public void moveUp(){
@@ -107,33 +117,6 @@ public class Position {
 
     public boolean equals(Position pos){
         if (this.posX == pos.getX() && this.posY == pos.getY()){
-            return true ;
-        }
-        else{
-            return false ;
-        }
-    }
-
-    private boolean isOnTheLeftOf(Position pos){
-        if (this.posY == pos.getY() && this.posX == pos.getX() - 1 ){
-            return true ;
-        }
-        else{
-            return false ;
-        }
-    }
-
-    private boolean isOnTopOf(Position pos){
-        if (this.posY == pos.getY() + 1 && this.posX == pos.getX()){
-            return true ;
-        }
-        else{
-            return false ;
-        }
-    }
-
-    private boolean isUnder(Position pos){
-        if (this.posY == pos.getY() - 1 && this.posX == pos.getX()){
             return true ;
         }
         else{

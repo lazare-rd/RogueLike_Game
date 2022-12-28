@@ -1,6 +1,8 @@
 package fr.uvsq.cprog.roguelike.World;
 
-public class SolutionPath {
+import java.io.Serializable;
+
+public class SolutionPath implements Serializable{
     private int x ;
     private int y ;
     private int direction ;

@@ -7,7 +7,7 @@ import fr.uvsq.cprog.roguelike.Entities.Figure;
 import fr.uvsq.cprog.roguelike.Entities.Zombie;
 
 
-import fr.uvsq.cprog.roguelike.RogueLike;
+import fr.uvsq.cprog.roguelike.Board;
 import fr.uvsq.cprog.roguelike.Entities.Coin;
 import fr.uvsq.cprog.roguelike.Entities.Door;
 
@@ -15,9 +15,9 @@ import fr.uvsq.cprog.roguelike.Entities.Door;
 public class MoveRight implements Commande{
     private Figure figure ;
     private World world ;
-    private RogueLike rg ;
+    private Board rg ;
 
-    public MoveRight(RogueLike rg){
+    public MoveRight(Board rg){
         this.rg = rg ;
         this.figure = rg.getPJ() ; 
         this.world = rg.getWorld() ;

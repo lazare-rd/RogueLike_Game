@@ -8,7 +8,7 @@ import fr.uvsq.cprog.roguelike.Entities.Zombie;
 import fr.uvsq.cprog.roguelike.UI.Position;
 
 
-import fr.uvsq.cprog.roguelike.RogueLike;
+import fr.uvsq.cprog.roguelike.Board;
 import fr.uvsq.cprog.roguelike.Entities.Coin;
 import fr.uvsq.cprog.roguelike.Entities.Door;
 
@@ -16,9 +16,9 @@ import fr.uvsq.cprog.roguelike.Entities.Door;
 public class MoveDown implements Commande{
     private Figure figure ;
     private World world ;
-    private RogueLike rg ;
+    private Board rg ;
 
-    public MoveDown(RogueLike rg){
+    public MoveDown(Board rg){
         this.rg = rg ;
         this.figure = rg.getPJ() ;
         this.world = rg.getWorld() ;

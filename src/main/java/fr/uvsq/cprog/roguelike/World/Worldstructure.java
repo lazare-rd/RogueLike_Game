@@ -1,12 +1,13 @@
 package fr.uvsq.cprog.roguelike.World;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.Random;
 
 import asciiPanel.AsciiCharacterData;
 import fr.uvsq.cprog.roguelike.Entities.*;
 
-public class Worldstructure {
+public class Worldstructure implements Serializable{
     private int width ; 
     private int height ;
     private int roomHeight ;

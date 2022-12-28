@@ -11,24 +11,24 @@ public class RogueLikeTest {
     
     @Test
     public void isConstructorInstanciated(){
-        new RogueLike() ;
+        new Board() ;
     }
 
     @Test
     public void GetUiTest(){
-        RogueLike rg = new RogueLike();
+        Board rg = new Board();
         assert(rg.getUi() instanceof UserInterface);
     }
 
     @Test
     public void GetPJTest(){
-        RogueLike rg = new RogueLike();
+        Board rg = new Board();
         assert(rg.getPJ() instanceof PJ) ;
     }
 
     @Test
     public void ProcessInputTest(){ 
-        RogueLike rg = new RogueLike();
+        Board rg = new Board();
         Button a = new Button() ;
         long time = System.currentTimeMillis() ;
 

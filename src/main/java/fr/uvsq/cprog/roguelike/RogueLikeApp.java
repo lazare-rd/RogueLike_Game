@@ -3,6 +3,7 @@ package fr.uvsq.cprog.roguelike;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 /**
  * Cette classe est le programme principal du projet.
  *
