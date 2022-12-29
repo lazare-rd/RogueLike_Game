@@ -33,7 +33,7 @@ public class MoveDown implements Commande{
         if ( layout[x][y] instanceof Zombie ){
             this.figure.getPos().moveDown();
             this.figure.setView("DOWN");
-            this.figure.removeOneLife();
+            this.figure.removeOneLife(rg.getUi());
         }
         else if ( layout[x][y] instanceof Door ){
             rg.updateGame();

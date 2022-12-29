@@ -29,7 +29,7 @@ public class MoveLeft implements Commande{
         if ( layout[x][y] instanceof Zombie ){
             this.figure.getPos().moveLeft();
             this.figure.setView("LEFT");
-            this.figure.removeOneLife();
+            this.figure.removeOneLife(rg.getUi());
         }
         else if ( layout[x][y] instanceof Door ){
             rg.updateGame();

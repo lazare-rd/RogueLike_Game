@@ -30,7 +30,7 @@ public class MoveUp implements Commande{
         if ( layout[x][y] instanceof Zombie ){
             this.figure.getPos().moveUp();
             this.figure.setView("UP");
-            this.figure.removeOneLife();
+            this.figure.removeOneLife(rg.getUi());
         }
         else if ( layout[x][y] instanceof Door ){
             rg.updateGame();

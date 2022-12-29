@@ -31,8 +31,8 @@ public class MoveRight implements Commande{
         int y = posRight.getY() ;
         if ( layout[x][y] instanceof Zombie ){
             this.figure.setView("RIGHT");
-            this.figure.removeOneLife();
             this.figure.getPos().moveRight();
+            this.figure.removeOneLife(rg.getUi());
         }
         else if ( layout[x][y] instanceof Door ){
             rg.updateGame();

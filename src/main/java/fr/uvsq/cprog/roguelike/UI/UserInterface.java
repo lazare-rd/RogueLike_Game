@@ -87,6 +87,12 @@ public class UserInterface extends JFrame implements KeyListener{
         }
     }
 
+    public void drawDeadScreen(){
+        this.clear();
+        this.terminal.write("YOU'RE DEAD...", 53, 24, Color.CYAN);
+        this.repaint();
+    }
+
     public String[] getNamesOfSavedGames(){
         File f = new File("savedGames");
         File[] files = f.listFiles();

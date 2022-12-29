@@ -2,8 +2,10 @@ package fr.uvsq.cprog.roguelike.Entities;
 
 import java.awt.Color ;
 
+import fr.uvsq.cprog.roguelike.RogueLike;
 import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
 import fr.uvsq.cprog.roguelike.UI.Position;
+import fr.uvsq.cprog.roguelike.UI.UserInterface;
 
 public class Figure extends Entity{
     private int lifePoints ;
@@ -34,9 +36,9 @@ public class Figure extends Entity{
         this.coins+=1 ;
     }
 
-    public void removeOneLife(){
+    public void removeOneLife(UserInterface ui){
         if (this.lifePoints - 1 == 0){
-            kill();
+            kill(ui);
         }
         else{
             this.lifePoints -= 1 ;
@@ -51,11 +53,13 @@ public class Figure extends Entity{
         this.lifePoints = lifePoints ;
     }
     
-    private static void kill(){
+    private static void kill(UserInterface ui){
+        ui.drawDeadScreen();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.exit(0);
     }
 }

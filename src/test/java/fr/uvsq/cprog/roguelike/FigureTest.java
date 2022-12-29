@@ -5,6 +5,7 @@ import fr.uvsq.cprog.roguelike.Entities.Figure;
 
 import java.awt.Color ;
 import fr.uvsq.cprog.roguelike.UI.Position;
+import fr.uvsq.cprog.roguelike.UI.UserInterface;
 
 public class FigureTest {
 
@@ -22,7 +23,8 @@ public class FigureTest {
     @Test
     public void removeOneLifeTest(){
         Figure fig = new Figure(0, 0, '@', Color.BLACK);
-        fig.removeOneLife();
+        UserInterface ui = new UserInterface();
+        fig.removeOneLife(ui);
         assert(fig.getLifePoints() == 2);
     }
 
