@@ -1,8 +1,7 @@
 package fr.uvsq.cprog.roguelike.Entities;
 
-import java.awt.Color ;
+import java.awt.Color;
 
-import fr.uvsq.cprog.roguelike.RogueLike;
 import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
 import fr.uvsq.cprog.roguelike.UI.Position;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
@@ -11,7 +10,7 @@ public class Figure extends Entity{
     private int lifePoints ;
     private int coins ;
 
-    public Figure(int x, int y, char glyph, Color color){
+    public Figure(int x, int y, char glyph, Color color) {
         try {
             super.position = new Position(x, y);
             super.glyph = glyph ;
@@ -24,36 +23,36 @@ public class Figure extends Entity{
         }
     }
 
-    public int getCoins(){
+    public int getCoins() {
         return this.coins ;
     }
 
-    public void setCoins(int coins){
+    public void setCoins(int coins) {
         this.coins = coins ;
     }
 
-    public void addOneCoin(){
-        this.coins+=1 ;
+    public void addOneCoin() {
+        this.coins += 1 ;
     }
 
-    public void removeOneLife(UserInterface ui){
-        if (this.lifePoints - 1 == 0){
+    public void removeOneLife(UserInterface ui) {
+        if (this.lifePoints - 1 == 0) {
             kill(ui);
         }
-        else{
+        else {
             this.lifePoints -= 1 ;
         }
     }
 
-    public int getLifePoints(){
+    public int getLifePoints() {
         return this.lifePoints ;
     }
 
-    public void setLifePoints(int lifePoints){
+    public void setLifePoints(int lifePoints) {
         this.lifePoints = lifePoints ;
     }
     
-    private static void kill(UserInterface ui){
+    private static void kill(UserInterface ui) {
         ui.drawDeadScreen();
         try {
             Thread.sleep(5000);

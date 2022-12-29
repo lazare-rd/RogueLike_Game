@@ -1,13 +1,13 @@
 package fr.uvsq.cprog.roguelike.Entities;
 
-import java.awt.Color ;
+import java.awt.Color;
 
 import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
 import fr.uvsq.cprog.roguelike.UI.Position;
 
 public class Bullet extends Entity {
 
-    public Bullet(int x, int y){
+    public Bullet(int x, int y) {
         try {
             super.color = Color.RED ;
             super.glyph = '*' ;
@@ -17,7 +17,7 @@ public class Bullet extends Entity {
         }
     }
 
-    public static void erase(Bullet bullet){
+    public static void erase(Bullet bullet) {
         bullet = null ;
         System.gc();
     }

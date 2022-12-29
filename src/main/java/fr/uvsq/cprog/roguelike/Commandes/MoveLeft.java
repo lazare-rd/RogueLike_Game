@@ -14,33 +14,33 @@ public class MoveLeft implements Commande{
     private World world ;
     private Board rg ;
 
-    public MoveLeft(Board rg){
+    public MoveLeft(Board rg) {
         this.rg = rg ;
         this.figure = rg.getPJ() ; 
         this.world = rg.getWorld() ;
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         Entity[][] layout = this.world.getLayout().getData() ;
         Position posLeft = this.figure.getPos().getPosOnTheLeft() ;
         int x = posLeft.getX() ;
         int y = posLeft.getY() ;
-        if ( layout[x][y] instanceof Zombie ){
+        if (layout[x][y] instanceof Zombie) {
             this.figure.getPos().moveLeft();
             this.figure.setView("LEFT");
             this.figure.removeOneLife(rg.getUi());
         }
-        else if ( layout[x][y] instanceof Door ){
+        else if (layout[x][y] instanceof Door) {
             rg.updateGame();
             rg.run();
         }
-        else if ( layout[x][y] instanceof Coin ){
+        else if (layout[x][y] instanceof Coin) {
             this.figure.getPos().moveLeft();
             this.figure.setView("LEFT");
             this.figure.addOneCoin();
         }
-        else if ( !(layout[x][y] instanceof Wall) ){
+        else if (!(layout[x][y] instanceof Wall)) {
             this.figure.getPos().moveLeft();
             this.figure.setView("LEFT");
         }

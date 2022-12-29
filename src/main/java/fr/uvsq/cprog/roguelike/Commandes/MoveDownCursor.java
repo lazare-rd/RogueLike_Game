@@ -7,16 +7,16 @@ public class MoveDownCursor implements Commande{
     private int maxHeigh ;
     private int[] fileNamesWidth ;
 
-    public MoveDownCursor(Cursor cusor, int[] fileNamesWidth){
+    public MoveDownCursor(Cursor cusor, int[] fileNamesWidth) {
         this.cursor = cusor ;
         this.maxHeigh = fileNamesWidth.length + 17 ;
         this.fileNamesWidth = fileNamesWidth;
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         int currY = this.cursor.getPos().getY();
-        if ( currY + 1 < maxHeigh ){
+        if (currY + 1 < maxHeigh) {
             this.cursor.getPos().moveDown();
             this.cursor.getPos().setX(fileNamesWidth[(currY + 1) - 17]);
         }

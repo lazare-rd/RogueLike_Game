@@ -17,33 +17,33 @@ public class MoveRight implements Commande{
     private World world ;
     private Board rg ;
 
-    public MoveRight(Board rg){
+    public MoveRight(Board rg) {
         this.rg = rg ;
         this.figure = rg.getPJ() ; 
         this.world = rg.getWorld() ;
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         Entity[][] layout = this.world.getLayout().getData() ;
         Position posRight = this.figure.getPos().getPosOnTheRight() ;
         int x = posRight.getX() ;
         int y = posRight.getY() ;
-        if ( layout[x][y] instanceof Zombie ){
+        if (layout[x][y] instanceof Zombie) {
             this.figure.setView("RIGHT");
             this.figure.getPos().moveRight();
             this.figure.removeOneLife(rg.getUi());
         }
-        else if ( layout[x][y] instanceof Door ){
+        else if (layout[x][y] instanceof Door) {
             rg.updateGame();
             rg.run();
         }
-        else if ( layout[x][y] instanceof Coin ){
+        else if (layout[x][y] instanceof Coin) {
             this.figure.getPos().moveRight();
             this.figure.setView("RIGHT");
             this.figure.addOneCoin();
         }
-        else if ( !(layout[x][y] instanceof Wall) ){
+        else if (!(layout[x][y] instanceof Wall)) {
             this.figure.getPos().moveRight();
             this.figure.setView("RIGHT");
         }

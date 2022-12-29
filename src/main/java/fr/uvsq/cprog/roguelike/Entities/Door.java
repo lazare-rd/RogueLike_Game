@@ -6,7 +6,7 @@ import fr.uvsq.cprog.roguelike.UI.Position;
 
 public class Door extends Entity{
     
-    public Door(int x, int y){
+    public Door(int x, int y) {
         try {
             super.color = Color.CYAN ;
             super.glyph = 'D' ;

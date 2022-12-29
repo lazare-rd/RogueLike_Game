@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Zombie extends Figure{
 
-    public Zombie(int x, int y){
+    public Zombie(int x, int y) {
         super(x, y, 'Z', Color.GREEN);
     }
     

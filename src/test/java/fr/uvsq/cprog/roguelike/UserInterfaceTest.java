@@ -1,7 +1,7 @@
 package fr.uvsq.cprog.roguelike;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent ;
+import java.awt.event.KeyEvent;
 import java.awt.Button;
 
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.junit.Test;
 import asciiPanel.AsciiPanel;
 import fr.uvsq.cprog.roguelike.Entities.PJ;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
-import asciiPanel.AsciiCharacterData ;
+import asciiPanel.AsciiCharacterData;
 
 import java.util.NoSuchElementException;
 
@@ -25,17 +25,17 @@ public class UserInterfaceTest {
 
 
     @Test 
-    public void isConstructorInstanciated(){
+    public void isConstructorInstanciated() {
         new UserInterface() ;
     }
 
     @Test
-    public void getTerminalTest(){
+    public void getTerminalTest() {
         assert(ui.getTerminal() instanceof AsciiPanel);
     }
 
     @Test
-    public void drawPjTest(){
+    public void drawPjTest() {
         ui.drawFig(player);
         AsciiPanel panel = ui.getTerminal() ;
         AsciiCharacterData[][] characters = panel.getCharacters() ;
@@ -44,13 +44,13 @@ public class UserInterfaceTest {
         assert(characters[0][0].foregroundColor == expectedGlyph.foregroundColor) ;
     }
 
-    @Test (expected = NoSuchElementException.class)
-    public void getNextInputTestException(){
+    @Test(expected = NoSuchElementException.class)
+    public void getNextInputTestException() {
         ui.getNextInput();
     }
 
     @Test
-    public void getNextInputTest(){
+    public void getNextInputTest() {
         ui.addEventInQueue(expectedEvent);
         assert(ui.getNextInput().equals(expectedEvent));
     }

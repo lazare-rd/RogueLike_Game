@@ -8,36 +8,36 @@ import fr.uvsq.cprog.roguelike.World.World;
 public class WorldTest {
 
     @Test
-    public void constuctorTest(){
+    public void constuctorTest() {
         new World(0);
     }
 
     @Test
-    public void isThereAWayOutTest(){
-        for (int i=0 ; i<20 ; i++){
+    public void isThereAWayOutTest() {
+        for (int i = 0 ; i < 20 ; i++) {
             World world = new World(0) ;
             assert(findWayOut(world));
         } 
     }
 
     @Test
-    public void isThereANullElement(){
-        for (int i=0 ; i<20 ; i++){
+    public void isThereANullElement() {
+        for (int i = 0 ; i < 20 ; i++) {
             World world = new World(0) ;
-            assert( !(findNullElement(world)) );
+            assert(!(findNullElement(world)));
         } 
     }
 
-    private boolean findWayOut(World world){
+    private boolean findWayOut(World world) {
         int[][] layout = world.getRoomLayout();
-        for (int i=0 ; i<7 ; i++){
+        for (int i = 0 ; i < 7 ; i++) {
             innerLoop :
-            for (int j=0 ; j<5 ; j++){
-                if (layout[i][j] == 2){
-                    if (layout[i][j+1] != 2 && layout[i][j+1] != 3){
+            for (int j = 0 ; j < 5 ; j++) {
+                if (layout[i][j] == 2) {
+                    if (layout[i][j + 1] != 2 && layout[i][j + 1] != 3) {
                         return false ;
                     }
-                    else{
+                    else {
                         break innerLoop ;
                     }
                 }
@@ -46,11 +46,11 @@ public class WorldTest {
         return true ;
     }
 
-    private boolean findNullElement(World world){
+    private boolean findNullElement(World world) {
         Entity[][] layout = world.getLayout().getData() ;
-        for (int i = 0 ; i < UserInterface.pixelsInWidth ; i++){
-            for (int j = 0 ; j < UserInterface.pixelsInHeight ; j++){
-                if ( !(layout[i][j] instanceof Entity) ){
+        for (int i = 0 ; i < UserInterface.pixelsInWidth ; i++) {
+            for (int j = 0 ; j < UserInterface.pixelsInHeight ; j++) {
+                if (!(layout[i][j] instanceof Entity)) {
                     return true ;
                 }
             }

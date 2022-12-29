@@ -15,33 +15,33 @@ public class MoveUp implements Commande{
     private World world ;
     private Board rg ;
 
-    public MoveUp(Board rg){
+    public MoveUp(Board rg) {
         this.rg = rg ;
         this.figure = rg.getPJ() ;
         this.world = rg.getWorld() ;
     }
 
     @Override
-    public void execute(){
+    public void execute() {
         Entity[][] layout = this.world.getLayout().getData() ;
         Position posUp = this.figure.getPos().getPosOnTop() ;
         int x = posUp.getX() ;
         int y = posUp.getY() ;
-        if ( layout[x][y] instanceof Zombie ){
+        if (layout[x][y] instanceof Zombie) {
             this.figure.getPos().moveUp();
             this.figure.setView("UP");
             this.figure.removeOneLife(rg.getUi());
         }
-        else if ( layout[x][y] instanceof Door ){
+        else if (layout[x][y] instanceof Door) {
             rg.updateGame();
             rg.run();
         }
-        else if ( layout[x][y] instanceof Coin ){
+        else if (layout[x][y] instanceof Coin) {
             this.figure.getPos().moveUp();
             this.figure.setView("UP");
             this.figure.addOneCoin();
         }
-        else if ( !(layout[x][y] instanceof Wall) ){
+        else if (!(layout[x][y] instanceof Wall)) {
             this.figure.getPos().moveUp();
             this.figure.setView("UP");
         }

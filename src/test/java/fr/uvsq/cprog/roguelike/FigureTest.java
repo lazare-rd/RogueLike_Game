@@ -3,14 +3,14 @@ import org.junit.Test;
 
 import fr.uvsq.cprog.roguelike.Entities.Figure;
 
-import java.awt.Color ;
+import java.awt.Color;
 import fr.uvsq.cprog.roguelike.UI.Position;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
 
 public class FigureTest {
 
     @Test
-    public void constructorTest(){
+    public void constructorTest() {
         Figure fig = new Figure(0, 0, '@', Color.BLACK);
         assert(fig.getPos().equals(new Position()));
         assert(fig.getGlyph() == '@');
@@ -21,7 +21,7 @@ public class FigureTest {
     }
 
     @Test
-    public void removeOneLifeTest(){
+    public void removeOneLifeTest() {
         Figure fig = new Figure(0, 0, '@', Color.BLACK);
         UserInterface ui = new UserInterface();
         fig.removeOneLife(ui);
@@ -29,14 +29,14 @@ public class FigureTest {
     }
 
     @Test
-    public void addOneCoinTest(){
+    public void addOneCoinTest() {
         Figure fig = new Figure(0, 0, '@', Color.BLACK);
         fig.addOneCoin();
         assert(fig.getCoins() == 1);
     }
 
     @Test
-    public void settersTest(){
+    public void settersTest() {
         Figure fig = new Figure(0, 0, '@', Color.BLACK);
         fig.setCoins(100);
         fig.setLifePoints(100);

@@ -4,30 +4,30 @@ import fr.uvsq.cprog.roguelike.Commandes.*;
 import fr.uvsq.cprog.roguelike.Entities.PJ;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
 
-import java.awt.Button ;
-import java.awt.event.KeyEvent ;
+import java.awt.Button;
+import java.awt.event.KeyEvent;
 
 public class RogueLikeTest {
     
     @Test
-    public void isConstructorInstanciated(){
+    public void isConstructorInstanciated() {
         new Board() ;
     }
 
     @Test
-    public void GetUiTest(){
+    public void GetUiTest() {
         Board rg = new Board();
         assert(rg.getUi() instanceof UserInterface);
     }
 
     @Test
-    public void GetPJTest(){
+    public void GetPJTest() {
         Board rg = new Board();
         assert(rg.getPJ() instanceof PJ) ;
     }
 
     @Test
-    public void ProcessInputTest(){ 
+    public void ProcessInputTest() { 
         Board rg = new Board();
         Button a = new Button() ;
         long time = System.currentTimeMillis() ;

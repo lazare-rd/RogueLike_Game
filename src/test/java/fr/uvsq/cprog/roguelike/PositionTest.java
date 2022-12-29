@@ -7,19 +7,19 @@ import fr.uvsq.cprog.roguelike.UI.Position;
 public class PositionTest {
 
     @Test
-    public void isConstructorInstanciated() throws IllegalPositionException{
+    public void isConstructorInstanciated() throws IllegalPositionException {
         new Position(0, 0);
     }
 
     @Test
-    public void gettersTest() throws IllegalPositionException{
+    public void gettersTest() throws IllegalPositionException {
         Position p = new Position(0, 0);
         assert(p.getX() == 0);
         assert(p.getY() == 0);
     }
 
     @Test
-    public void moveUpAndLeftBorderTest() throws IllegalPositionException{
+    public void moveUpAndLeftBorderTest() throws IllegalPositionException {
         Position p = new Position(0, 0);
         p.moveUp();
         assert(p.getY() == 0);
@@ -32,9 +32,9 @@ public class PositionTest {
     }
 
     @Test
-    public void moveDownAndRightBorderTest() throws IllegalPositionException{
-        int x = Position.getMaxWidth() ;
-        int y = Position.getMaxHeight() ;
+    public void moveDownAndRightBorderTest() throws IllegalPositionException {
+        int x = Position.getMaxWidth() - 1 ;
+        int y = Position.getMaxHeight() - 1  ;
         Position p = new Position(x, y);
         p.moveDown();
         assert(p.getY() == y);

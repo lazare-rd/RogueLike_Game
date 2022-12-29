@@ -12,7 +12,7 @@ public class TextFieldWindow extends JFrame implements ActionListener{
     private JPanel myPanel ;
     private boolean userHasCliked ;
 
-    public TextFieldWindow(){
+    public TextFieldWindow() {
         this.myPanel = new JPanel();
         this.userHasCliked = false ;
         add(myPanel);
@@ -23,7 +23,7 @@ public class TextFieldWindow extends JFrame implements ActionListener{
         saveButton.addActionListener(this);
     }
 
-    public void actionPerformed(ActionEvent action){
+    public void actionPerformed(ActionEvent action) {
         if (action.getSource() == saveButton) {
             try {
                 this.data = textField.getText();
@@ -36,15 +36,15 @@ public class TextFieldWindow extends JFrame implements ActionListener{
         }
     }
 
-    public String getData(){
+    public String getData() {
         return this.data ;
     }
 
-    public boolean getUserHasCliked(){
+    public boolean getUserHasCliked() {
         return this.userHasCliked ;
     }
 
-    public void showWindow(){
+    public void showWindow() {
         this.setLocation(10, 10);
         this.setSize(300, 300);
         this.setVisible(true);

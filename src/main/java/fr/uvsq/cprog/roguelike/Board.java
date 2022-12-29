@@ -1,11 +1,11 @@
 package fr.uvsq.cprog.roguelike;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent ;
+import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
 
-import fr.uvsq.cprog.roguelike.Commandes.* ;
+import fr.uvsq.cprog.roguelike.Commandes.*;
 import fr.uvsq.cprog.roguelike.Entities.PJ;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
 import fr.uvsq.cprog.roguelike.World.World;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 
-public class Board implements Serializable{
+public class Board implements Serializable {
     private PJ player ; 
     private transient UserInterface ui ;
     private World world ;
@@ -26,13 +26,13 @@ public class Board implements Serializable{
     public static final long timePerFrame = 8333333 ;
 
     
-    public Board(){
+    public Board() {
         this.player = new PJ(1, 1, '@', Color.RED);
         this.ui = new UserInterface() ;
         this.world = new World(0);
     }
 
-    public void updateGame(){
+    public void updateGame() {
         int coins = this.player.getCoins();
         int lives = this.player.getLifePoints() ;
         
@@ -44,31 +44,31 @@ public class Board implements Serializable{
         this.world = new World(this.world.getLevel() + 1);
     }
 
-    public UserInterface getUi(){
+    public UserInterface getUi() {
         return this.ui ;
     }
 
-    public PJ getPJ(){
+    public PJ getPJ() {
         return this.player ;
     }
 
-    public World getWorld(){
+    public World getWorld() {
         return this.world ;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name ;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name ;
     }
 
-    public void setUI(){
+    public void setUI() {
         this.ui = new UserInterface();
     }
 
-    public void serialize(String fileName){
+    public void serialize(String fileName) {
         try {
             FileOutputStream fout = new FileOutputStream("savedGames/" + fileName + ".rgl");    
             ObjectOutputStream out = new ObjectOutputStream(fout);    
@@ -80,30 +80,30 @@ public class Board implements Serializable{
         }
     }
 
-    public static Board deserialize(String fileName){
+    public static Board deserialize(String fileName) {
         Board board = null;
         try {
             FileInputStream fin = new FileInputStream("savedGames/" + fileName);    
             ObjectInputStream in = new ObjectInputStream(fin);    
-            board = (Board) in.readObject() ;
+            board = (Board)in.readObject() ;
             board.setUI();
             in.close();
             fin.close(); 
-        } catch (FileNotFoundException f){
+        } catch (FileNotFoundException f) {
             return new Board();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException c){
+        } catch (ClassNotFoundException c) {
             c.printStackTrace();
         }
         return board ;
     }
 
-    public void run(){
+    public void run() {
         boolean loop = true ;
         this.ui.drawWorld(this.world);
         this.ui.showUi();
-        while(loop){
+        while (loop) {
             long timeBeforeFrame = System.nanoTime() ;
             try {
                 this.preRender();
@@ -116,7 +116,7 @@ public class Board implements Serializable{
             }
             long timeAfterFrame = System.nanoTime() ;
             long sleepTime = timePerFrame - (timeAfterFrame - timeBeforeFrame) ;
-            if (sleepTime > 0){
+            if (sleepTime > 0) {
                 try {
                     Thread.sleep(sleepTime / 100000);
                 } catch (InterruptedException e) {
@@ -126,8 +126,8 @@ public class Board implements Serializable{
         }
     }
 
-    public Commande processInput(KeyEvent event){
-        switch(event.getKeyCode()){
+    public Commande processInput(KeyEvent event) {
+        switch(event.getKeyCode()) {
             case KeyEvent.VK_LEFT :
                 return new MoveLeft(this);
             case KeyEvent.VK_RIGHT :
@@ -147,11 +147,11 @@ public class Board implements Serializable{
             }
     }
 
-    private void preRender(){
+    private void preRender() {
         ui.clearFig(this.player);
     }
 
-    private void render(){
+    private void render() {
         ui.drawFig(this.player);
         ui.repaint();
     }

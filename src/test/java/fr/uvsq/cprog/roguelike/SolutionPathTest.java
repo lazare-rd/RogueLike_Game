@@ -6,12 +6,12 @@ import fr.uvsq.cprog.roguelike.World.SolutionPath;
 public class SolutionPathTest {
 
     @Test
-    public void testConstructor(){
+    public void testConstructor() {
         new SolutionPath() ;
     }
 
     @Test
-    public void testMoveRight_whenAtBound(){
+    public void testMoveRight_whenAtBound() {
         SolutionPath path = new SolutionPath();
         moveToRightSideBound(path);
         assert(path.moveRight() == "DOWN") ;
@@ -20,7 +20,7 @@ public class SolutionPathTest {
     }
 
     @Test
-    public void testMoveLeft_whenAtBound(){
+    public void testMoveLeft_whenAtBound() {
         SolutionPath path = new SolutionPath();
         assert(path.moveLeft() == "DOWN") ; 
         assert(path.getX() == 0) ; 
@@ -28,7 +28,7 @@ public class SolutionPathTest {
     }
 
     @Test
-    public void testMoveSideway(){
+    public void testMoveSideway() {
         SolutionPath path = new SolutionPath();
         assert(path.moveRight() == "RIGHT");
         assert(path.getX() == 1) ; 
@@ -39,7 +39,7 @@ public class SolutionPathTest {
     }
 
     @Test
-    public void testMoveDown(){
+    public void testMoveDown() {
         SolutionPath path = new SolutionPath();
         assert(path.moveDown() == "DOWN");
         assert(path.getX() == 0) ; 
@@ -47,7 +47,7 @@ public class SolutionPathTest {
     }
 
     @Test
-    public void testMoveDown_whenAtBound(){
+    public void testMoveDown_whenAtBound() {
         SolutionPath path = new SolutionPath() ;
         moveToLowerBound(path);
         assert(path.moveDown() == "STOP") ;
@@ -55,14 +55,14 @@ public class SolutionPathTest {
         assert(path.getY() == 5);
     }
 
-    private void moveToRightSideBound(SolutionPath path){
-        for (int i = 0 ; i < 7 ; i++){
+    private void moveToRightSideBound(SolutionPath path) {
+        for (int i = 0 ; i < 7 ; i++) {
             path.moveRight();
         }
     }
 
-    private void moveToLowerBound(SolutionPath path){
-        for (int i = 0 ; i < 5 ; i++){
+    private void moveToLowerBound(SolutionPath path) {
+        for (int i = 0 ; i < 5 ; i++) {
             path.moveDown();
         }
     }

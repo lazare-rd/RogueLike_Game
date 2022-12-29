@@ -1,5 +1,5 @@
 package fr.uvsq.cprog.roguelike.Entities;
-import java.awt.Color ;
+import java.awt.Color;
 import java.io.Serializable;
 
 import fr.uvsq.cprog.roguelike.UI.Position;
@@ -10,23 +10,23 @@ public abstract class Entity implements Serializable{
     protected Color color ;
     protected String view ;
 
-    public Position getPos(){
+    public Position getPos() {
         return position ;
     } ;
 
-    public Color getColor(){
+    public Color getColor() {
         return color;
     } ;
 
-    public char getGlyph(){
+    public char getGlyph() {
         return glyph ;
     } ;
 
-    public void setView(String view){
+    public void setView(String view) {
         this.view = view ;
     }
 
-    public String getView(){
+    public String getView() {
         return this.view ; 
     }
 }

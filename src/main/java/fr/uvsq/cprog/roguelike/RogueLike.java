@@ -13,14 +13,14 @@ public class RogueLike {
     private Cursor cursor ;
     private String[] fileNames ;
     
-    public RogueLike(){
+    public RogueLike() {
         this.ui = new UserInterface();
         this.cursor = new Cursor(35, 17);
         this.fileNames = this.ui.getNamesOfSavedGames();
     }
 
-    public Commande processInput(KeyEvent event){
-        switch(event.getKeyCode()){
+    public Commande processInput(KeyEvent event) {
+        switch(event.getKeyCode()) {
             case KeyEvent.VK_ENTER :
                 this.board = Board.deserialize(getFileSelected());
                 return new InitGame(this.board);
@@ -35,23 +35,23 @@ public class RogueLike {
         }
     }
 
-    private int[] getFileNamesWidth(String[] f){
+    private int[] getFileNamesWidth(String[] f) {
         int[] widths = new int[f.length];
-        for (int i = 0 ; i<f.length ; i++){
+        for (int i = 0 ; i < f.length ; i++) {
             widths[i] = f[i].length() + 27;
         }
         return widths ;
     }
 
-    private String getFileSelected(){
+    private String getFileSelected() {
         return fileNames[cursor.getPos().getY() - 17];
     }
 
-    public void run(){
+    public void run() {
         boolean loop = true ;
         this.ui.drawWelcome();
         this.ui.showUi();
-        while(loop){
+        while (loop) {
             long timeBeforeFrame = System.nanoTime() ;
             try {
                 this.preRender();
@@ -64,7 +64,7 @@ public class RogueLike {
             }
             long timeAfterFrame = System.nanoTime() ;
             long sleepTime = Board.timePerFrame - (timeAfterFrame - timeBeforeFrame) ;
-            if (sleepTime > 0){
+            if (sleepTime > 0) {
                 try {
                     Thread.sleep(sleepTime / 100000);
                 } catch (InterruptedException e) {
@@ -74,13 +74,13 @@ public class RogueLike {
         }
     }
 
-    private void render(){
+    private void render() {
         ui.drawFig(this.cursor);
-        this.ui.getTerminal().write(' ', UserInterface.pixelsInWidth + 10 , 3 );
+        this.ui.getTerminal().write(' ', UserInterface.pixelsInWidth + 10, 3);
         ui.repaint();
     }
 
-    private void preRender(){
+    private void preRender() {
         ui.clearFig(this.cursor);
     }
 }

@@ -86,6 +86,49 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.4.1</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <configLocation>google_checks.xml</configLocation>
+            <encoding>UTF-8</encoding>
+            <consoleOutput>true</consoleOutput>
+            <failsOnError>true</failsOnError>
+            <linkXRef>false</linkXRef>
+            <includeResources>true</includeResources>
+            <includeTestResources>true</includeTestResources>
+            <includes>**\/*.java</includes>
+            <resourceIncludes>**/*.properties</resourceIncludes>
+          </configuration>
+          <executions>
+              <execution>
+                <id>validate</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>4.38.0</version>
+          <configuration>
+            <activeRecipes>
+              <recipe>org.openrewrite.java.cleanup.Cleanup</recipe>
+            </activeRecipes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+              <mainClass>fr.uvsq.cprog.roguelike.RogueLikeApp</mainClass>
+          </configuration>
+      </plugin>
       </plugins>
     </pluginManagement>
   </build>
