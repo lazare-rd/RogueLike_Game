@@ -1,4 +1,4 @@
-package fr.uvsq.cprog.roguelike.World;
+package fr.uvsq.cprog.roguelike.world;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -38,10 +38,6 @@ public class World implements Serializable{
         generateWorld();
     }
 
-    public static void updateWorld(World world) {
-        
-    }
-
     public Worldstructure getLayout() {
         return this.layout ;
     }
@@ -52,6 +48,15 @@ public class World implements Serializable{
 
     public int getLevel() {
         return this.level ;
+    }
+
+    public boolean equals(World w) {
+        if (this.layout.equals(w.getLayout()) && this.level == w.getLevel()) {
+            return true ;
+        }
+        else {
+            return false ;
+        }
     }
 
     private void generateWorld() {
@@ -195,19 +200,5 @@ public class World implements Serializable{
                 }
             }
         }
-    }
-
-    private static void seeRoomLayout() {
-        World world = new World(0);
-        for (int x = 0 ; x < 6 ; x++) {
-            for (int y = 0 ; y < 8 ; y++) {
-                System.out.print(world.roomLayout[y][x] + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    public static void main(String[] args) {
-        seeRoomLayout();
     }
 }

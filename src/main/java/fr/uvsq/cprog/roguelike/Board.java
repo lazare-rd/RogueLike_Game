@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 import fr.uvsq.cprog.roguelike.Commandes.*;
 import fr.uvsq.cprog.roguelike.Entities.PJ;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
-import fr.uvsq.cprog.roguelike.World.World;
+import fr.uvsq.cprog.roguelike.world.World;
 
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
@@ -18,14 +18,15 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 
 public class Board implements Serializable {
-    private PJ player ; 
+
+    private static final long serialVersionUID = -7374753040195436320L;
+    public static final long timePerFrame = 8333333 ;
+
+    private PJ player ;
     private transient UserInterface ui ;
     private World world ;
     private String name ;
 
-    public static final long timePerFrame = 8333333 ;
-
-    
     public Board() {
         this.player = new PJ(1, 1, '@', Color.RED);
         this.ui = new UserInterface() ;
@@ -66,6 +67,15 @@ public class Board implements Serializable {
 
     public void setUI() {
         this.ui = new UserInterface();
+    }
+
+    public boolean equals(Board b) {
+        if (this.player.equals(b.getPJ()) && this.world.equals(b.getWorld())) {
+            return true ;
+        }
+        else {
+            return false ;
+        }
     }
 
     public void serialize(String fileName) {
@@ -138,8 +148,6 @@ public class Board implements Serializable {
                 return new MoveDown(this);
             case KeyEvent.VK_Q : 
                 return new Quit();
-            case KeyEvent.VK_SPACE:
-                return new Shoot();
             case KeyEvent.VK_S:
                 return new Save(this);
             default :

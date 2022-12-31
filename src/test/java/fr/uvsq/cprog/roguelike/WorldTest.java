@@ -3,13 +3,14 @@ import org.junit.Test;
 
 import fr.uvsq.cprog.roguelike.Entities.Entity;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
-import fr.uvsq.cprog.roguelike.World.World;
+import fr.uvsq.cprog.roguelike.world.World;
 
 public class WorldTest {
 
     @Test
     public void constuctorTest() {
         new World(0);
+        new World(19);
     }
 
     @Test
@@ -26,6 +27,13 @@ public class WorldTest {
             World world = new World(0) ;
             assert(!(findNullElement(world)));
         } 
+    }
+
+    @Test
+    public void testEquals() {
+        World w1 = new World(0);
+        World w2 = new World(0);
+        assert(!(w1.equals(w2)));
     }
 
     private boolean findWayOut(World world) {

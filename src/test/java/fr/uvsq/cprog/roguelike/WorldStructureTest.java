@@ -5,7 +5,7 @@ import asciiPanel.AsciiCharacterData;
 import fr.uvsq.cprog.roguelike.Entities.Entity;
 import fr.uvsq.cprog.roguelike.Entities.NullEntity;
 import fr.uvsq.cprog.roguelike.Entities.Wall;
-import fr.uvsq.cprog.roguelike.World.Worldstructure;
+import fr.uvsq.cprog.roguelike.world.Worldstructure;
 
 public class WorldStructureTest {
 

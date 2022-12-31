@@ -1,8 +1,11 @@
-package fr.uvsq.cprog.roguelike.World;
+package fr.uvsq.cprog.roguelike.world;
 
 import java.io.Serializable;
 
 public class SolutionPath implements Serializable{
+    
+    private static final long serialVersionUID = 6693868199962313574L;
+
     private int x ;
     private int y ;
     private int direction ;

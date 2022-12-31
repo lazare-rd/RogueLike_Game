@@ -19,6 +19,10 @@ public class RogueLike {
         this.fileNames = this.ui.getNamesOfSavedGames();
     }
 
+    public Cursor getCursor() {
+        return this.cursor ;
+    } 
+
     public Commande processInput(KeyEvent event) {
         switch(event.getKeyCode()) {
             case KeyEvent.VK_ENTER :

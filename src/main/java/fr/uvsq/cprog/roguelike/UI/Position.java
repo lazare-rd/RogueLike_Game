@@ -5,11 +5,15 @@ import java.io.Serializable;
 import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
 
 public class Position implements Serializable{
+
+    private static final long serialVersionUID = -6173100208259103382L;
+    
+    private static int maxHeigh = UserInterface.pixelsInHeight ;
+    private static int maxWidth = UserInterface.pixelsInWidth ;
+
     private int posX ;
     private int posY ;
 
-    private static int maxHeigh = UserInterface.pixelsInHeight ;
-    private static int maxWidth = UserInterface.pixelsInWidth ;
 
 
     public Position(int posX, int posY) throws IllegalPositionException {

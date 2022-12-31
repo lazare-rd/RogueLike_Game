@@ -9,7 +9,8 @@ import java.util.LinkedList;
 import asciiPanel.AsciiCharacterData;
 import asciiPanel.AsciiPanel;
 import fr.uvsq.cprog.roguelike.Entities.Figure;
-import fr.uvsq.cprog.roguelike.World.World;
+import fr.uvsq.cprog.roguelike.world.World;
+
 import java.awt.Color;
 
 import java.awt.Dimension;
@@ -139,5 +140,4 @@ public class UserInterface extends JFrame implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {}
-
 }

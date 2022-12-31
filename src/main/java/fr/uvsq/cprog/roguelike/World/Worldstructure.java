@@ -1,7 +1,8 @@
-package fr.uvsq.cprog.roguelike.World;
+package fr.uvsq.cprog.roguelike.world;
 
 import java.awt.Color;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Random;
 
 import asciiPanel.AsciiCharacterData;
@@ -92,6 +93,15 @@ public class Worldstructure implements Serializable {
             }
         }
         return grid ;
+    }
+
+    public boolean equals(Worldstructure ws) {
+        if (Arrays.deepEquals(this.data, ws.getData())) {
+            return true ;
+        }
+        else {
+            return false ;
+        }
     }
 
     private Entity[][] initiateData(int width, int height) {

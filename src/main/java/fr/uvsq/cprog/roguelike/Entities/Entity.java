@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 import fr.uvsq.cprog.roguelike.UI.Position;
 
-public abstract class Entity implements Serializable{
+public abstract class Entity implements Serializable {
+
+    private static final long serialVersionUID = -7460262937617263578L;
+
     protected Position position ;
     protected char glyph ; 
     protected Color color ;
@@ -28,5 +31,28 @@ public abstract class Entity implements Serializable{
 
     public String getView() {
         return this.view ; 
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true ;
+        }
+        if (obj == null) {
+            return false ;
+        }
+        if (!(obj instanceof Entity)) {
+            return false ;
+        }
+        Entity e = (Entity)obj ;
+        if (this.position.equals(e.getPos()) 
+            && this.glyph == e.getGlyph() 
+            && this.color.equals(e.getColor()))
+        {
+            return true ;
+        }
+        else {
+            return false ;
+        }
     }
 }

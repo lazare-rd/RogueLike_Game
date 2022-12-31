@@ -51,6 +51,18 @@ public class Figure extends Entity{
     public void setLifePoints(int lifePoints) {
         this.lifePoints = lifePoints ;
     }
+
+    public boolean equals(Figure fig) {
+        if (super.equals(fig)
+            && this.coins == fig.getCoins()
+            && this.lifePoints == fig.getLifePoints())
+        {
+            return true ;
+        }
+        else {
+            return false ;
+        }
+    }
     
     private static void kill(UserInterface ui) {
         ui.drawDeadScreen();

@@ -1,7 +1,7 @@
 package fr.uvsq.cprog.roguelike.Commandes;
 import fr.uvsq.cprog.roguelike.Entities.Entity;
-import fr.uvsq.cprog.roguelike.World.World;
 import fr.uvsq.cprog.roguelike.UI.Position;
+import fr.uvsq.cprog.roguelike.world.World;
 import fr.uvsq.cprog.roguelike.Entities.Wall;
 import fr.uvsq.cprog.roguelike.Entities.Figure;
 import fr.uvsq.cprog.roguelike.Entities.Zombie;

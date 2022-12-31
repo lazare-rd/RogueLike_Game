@@ -1,7 +1,7 @@
 package fr.uvsq.cprog.roguelike;
 import org.junit.Test;
 
-import fr.uvsq.cprog.roguelike.World.SolutionPath;
+import fr.uvsq.cprog.roguelike.world.SolutionPath;
 
 public class SolutionPathTest {
 
