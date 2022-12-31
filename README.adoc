@@ -112,7 +112,7 @@ La technique utilisé pour la génération aléatoire du donjon est décrite htt
 
 === Tests
 
-Le rapport de couverture de code par ces tests est disponibles en ouvrant ce fichier *__target/site/jacoco/index.html__* dans votre navigateur.
+Le rapport de couverture de code par les tests est disponibles en ouvrant ce fichier *__target/site/jacoco/index.html__* dans votre navigateur.
 
 === Librairie 
 
