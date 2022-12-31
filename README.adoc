@@ -57,13 +57,37 @@ http://fusesource.github.io/jansi/[JAnsi] (couleur dans un terminal),
 https://github.com/jline/jline3[JLine] (gestion des saisies)
 
 == Manuel utilisateur
-> À compléter :
-> Dans quel univers se déroule le jeu ?
-> Quel est le but du jeu ?
-> Quelles sont les caractéristiques du PJ ?
-> Que peuvent faire les PNJ ?
-> Quelles interactions/commandes sont disponibles ?
-> Quelles évolutions peut-on envisager ?
+
+=== Scénario :
+
+Vous êtes un personnage (@) qui évolue dans un donjon rempli de zombies verts (Z). À chaque niveau vous devez atteindre la porte bleue (D) pour accéder au niveau suivant. Le chemin pour y arriver est parsemé de zombies et de pièces d'or. Vous devez récolter le plus de pièces d'or possible tout en évitant les zombies. 
+Il y a 14 niveaux, et à chaque niveau les zombies sont plus nombreux.  
+
+=== Charactéristiques du PJ
+
+Le PJ est une arobase et donne son nom au jeu. Il possède 3 vies non renouvelables pendant les 14 niveaux. Chaque collision avec un zombie lui retire une vie.
+
+=== Charactéristiques des PNJ
+
+Les PNJ sont des zombies statiques qui retirent une vie au PJ lorsqu'il les percute. Un zombie est tué lorsqu'il est percuté par le PJ.
+
+=== Commandes
+
+Direction : *_touches directionnelles_*
+
+Quitter le jeu à tout instant (si une partie est en cours elle ne sera pas sauvegardée) :  *_q_*
+
+Quitter une partie en la sauvegardant :  *_s_*
+
+Démarrer une nouvelle partie ou une sauvegarde : *_enter_*
+
+=== Améliorations possibles 
+
+- Rendre les zombies mobiles
+- Créer un marché ou dépenser les pièces gagnées en jeu
+- Permettre au personnage de tirer des balles pour tuer les zombies
+- Possibilité de supprimer une sauvegarde.
+
 
 == Manuel technique
 === Compiler le projet
@@ -79,12 +103,31 @@ $ ./mvnw package
 
 === Éxécuter l'application
 ----
-$ java -jar target/roguelike-1.0.jar
+$ java -jar target/roguelike-1.0-SNAPSHOT-jar-with-dependencies.jar
 ----
 
-> À compléter :
-> Comment consulter le rapport de couverture de code par les tests ?
-> Quelles bibliothèques ont été utilisées et pourquoi ?
-> Quel est le rôle des différentes classes ?
-> Quels traitements sont réalisés pour gérer une commande saisie par l'utilisateur ? Donnez un exemple.
-> Quelles améliorations peut-on envisager ?
+=== Génération aléatoire du donjon
+
+La technique utilisé pour la génération aléatoire du donjon est décrite http://tinysubversions.com/spelunkyGen/[ici]. 
+
+=== Tests
+
+Le rapport de couverture de code par ces tests est disponibles en ouvrant ce fichier *__target/site/jacoco/index.html__* dans votre navigateur.
+
+=== Librairie 
+
+Ce projet utilise la librairie https://github.com/trystan/AsciiPanel[Ascii-panel] pour générer une imitation de terminal.
+
+=== Classes 
+
+https://www.figma.com/file/erf81T1wJAPv6T1KsmqQyp/Diagramme-de-Classes---Projet-Java-Datascale-M1?node-id=0%3A1&t=dtr15BbphAzESED5-1[Diagramme de classes]
+
+- La mainClass s'appelle RogueLikeApp, elle exécute la méthode run() de la classe RogueLike. La classe RogueLike affiche l'écran d'accueil du jeu, et exécute la méthode run() de la classe Board lorsqu'une partie est lancée.
+- Le dossier UI contient toutes les classes qui gèrent l'interface utilisateur
+
+=== Traitement des inputs utilisateur
+
+Dans une partie, lorsqu'un utilisateur enfonce une touche sur son clavier, la méthode processInput() de la classe Board s'exécute. Un objet Commande est retourné.
+
+L'interface Commande impose aux classes l'implémentant de définir une méthode execute(). C'est dans cette méthode que sont définis les actions faites par la commande en question. Une fois l'objet Commande retourné, c'est cette méthode execute() qui est exécutée dans la méthode run() de la classe Board.
+

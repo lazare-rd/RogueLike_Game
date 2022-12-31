@@ -1,9 +1,5 @@
 package fr.uvsq.cprog.roguelike;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-
 /**
  * Cette classe est le programme principal du projet.
  *
@@ -15,8 +11,6 @@ import org.apache.logging.log4j.Logger;
  */
 public enum RogueLikeApp {
     ROGUE_LIKE_APP;
-
-    private static final Logger logger = LogManager.getLogger(RogueLikeApp.class);
 
     /**
      * Cette méthode est destinée à initialiser et lancer l'exécution du programme.
