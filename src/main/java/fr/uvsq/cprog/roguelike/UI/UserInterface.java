@@ -17,6 +17,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 
+/**
+ * The constructor sets-up a non visible JFrame with an empty AsciiPanel.
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class UserInterface extends JFrame implements KeyListener {
     private Queue<KeyEvent> inputQueue ;
     private AsciiPanel terminal;
@@ -40,10 +45,18 @@ public class UserInterface extends JFrame implements KeyListener {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    
+    /** 
+     * @return AsciiPanel
+     */
     public AsciiPanel getTerminal() {
         return this.terminal ;
     }
 
+    
+    /** 
+     * @param player
+     */
     public void drawFig(Figure player) {
         this.terminal.write(player.getGlyph(), player.getPos().getX(), player.getPos().getY(), player.getColor());
         for (int i = 0 ; i < player.getLifePoints() * 2 ; i += 2) {
@@ -53,6 +66,10 @@ public class UserInterface extends JFrame implements KeyListener {
         this.terminal.write(String.valueOf(player.getCoins()), pixelsInWidth + 10, 3, Color.YELLOW);
     } 
 
+    
+    /** 
+     * @param world
+     */
     public void drawWorld(World world) {
         AsciiCharacterData[][] grid = world.generateCharGrid() ;
         for (int x = 0 ; x < pixelsInWidth ; x++) {
@@ -94,6 +111,10 @@ public class UserInterface extends JFrame implements KeyListener {
         this.repaint();
     }
 
+    
+    /** 
+     * @return String[]
+     */
     public String[] getNamesOfSavedGames() {
         File f = new File("savedGames");
         File[] files = f.listFiles();
@@ -109,6 +130,10 @@ public class UserInterface extends JFrame implements KeyListener {
         this.terminal.clear() ;
     }
 
+    
+    /** 
+     * @param player
+     */
     public void clearFig(Figure player) {
         this.terminal.clear(' ', player.getPos().getX(), player.getPos().getY(), 1, 1) ;
         this.terminal.clear(' ', pixelsInWidth + 9, 1, 15, 1);
@@ -118,6 +143,10 @@ public class UserInterface extends JFrame implements KeyListener {
         this.terminal.repaint();
     }
 
+    
+    /** 
+     * @return KeyEvent
+     */
     public KeyEvent getNextInput() {
         return inputQueue.remove() ;
     }
@@ -126,10 +155,18 @@ public class UserInterface extends JFrame implements KeyListener {
         this.setVisible(true);
     }
 
+    
+    /** 
+     * @param e
+     */
     public void addEventInQueue(KeyEvent e) {
         inputQueue.add(e) ;
     }
 
+    
+    /** 
+     * @param e
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         inputQueue.add(e) ;

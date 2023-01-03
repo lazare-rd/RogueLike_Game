@@ -6,6 +6,11 @@ import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
 import fr.uvsq.cprog.roguelike.UI.Position;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
 
+/**
+ * A Figure is a particular Entity that can move, has lifePoints and coins
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class Figure extends Entity{
     private int lifePoints ;
     private int coins ;
@@ -23,10 +28,18 @@ public class Figure extends Entity{
         }
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getCoins() {
         return this.coins ;
     }
 
+    
+    /** 
+     * @param coins
+     */
     public void setCoins(int coins) {
         this.coins = coins ;
     }
@@ -35,6 +48,10 @@ public class Figure extends Entity{
         this.coins += 1 ;
     }
 
+    
+    /** 
+     * @param ui
+     */
     public void removeOneLife(UserInterface ui) {
         if (this.lifePoints - 1 == 0) {
             kill(ui);
@@ -44,14 +61,27 @@ public class Figure extends Entity{
         }
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getLifePoints() {
         return this.lifePoints ;
     }
 
+    
+    /** 
+     * @param lifePoints
+     */
     public void setLifePoints(int lifePoints) {
         this.lifePoints = lifePoints ;
     }
 
+    
+    /** 
+     * @param fig
+     * @return boolean
+     */
     public boolean equals(Figure fig) {
         if (super.equals(fig)
             && this.coins == fig.getCoins()
@@ -64,6 +94,10 @@ public class Figure extends Entity{
         }
     }
     
+    
+    /** 
+     * @param ui
+     */
     private static void kill(UserInterface ui) {
         ui.drawDeadScreen();
         try {

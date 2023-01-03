@@ -17,10 +17,16 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 
+/**
+ * A Board is everything that is displayed during a game i.e a PJ and a World
+ * Any game is being run from this class. 
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class Board implements Serializable {
 
     private static final long serialVersionUID = -7374753040195436320L;
-    public static final long timePerFrame = 8333333 ;
+    public static final long timePerFrame = 8333333 ; //in nano-seconds <==> 120fps 
 
     private PJ player ;
     private transient UserInterface ui ;
@@ -45,22 +51,42 @@ public class Board implements Serializable {
         this.world = new World(this.world.getLevel() + 1);
     }
 
+    
+    /** 
+     * @return UserInterface
+     */
     public UserInterface getUi() {
         return this.ui ;
     }
 
+    
+    /** 
+     * @return PJ
+     */
     public PJ getPJ() {
         return this.player ;
     }
 
+    
+    /** 
+     * @return World
+     */
     public World getWorld() {
         return this.world ;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getName() {
         return this.name ;
     }
 
+    
+    /** 
+     * @param name
+     */
     public void setName(String name) {
         this.name = name ;
     }
@@ -69,6 +95,11 @@ public class Board implements Serializable {
         this.ui = new UserInterface();
     }
 
+    
+    /** 
+     * @param b
+     * @return boolean
+     */
     public boolean equals(Board b) {
         if (this.player.equals(b.getPJ()) && this.world.equals(b.getWorld())) {
             return true ;
@@ -78,6 +109,11 @@ public class Board implements Serializable {
         }
     }
 
+    
+    /** 
+     * Serialize the board and stores it as savedGames/fileName.rgl
+     * @param fileName
+     */
     public void serialize(String fileName) {
         try {
             FileOutputStream fout = new FileOutputStream("savedGames/" + fileName + ".rgl");    
@@ -90,6 +126,12 @@ public class Board implements Serializable {
         }
     }
 
+    
+    /** 
+     * Deserialize the serialized board stored at savedGames/fileName
+     * @param fileName
+     * @return Board
+     */
     public static Board deserialize(String fileName) {
         Board board = null;
         try {
@@ -109,6 +151,9 @@ public class Board implements Serializable {
         return board ;
     }
 
+    /**
+     * Displays the UI of a game, and runs the game loop
+     */
     public void run() {
         boolean loop = true ;
         this.ui.drawWorld(this.world);
@@ -136,6 +181,11 @@ public class Board implements Serializable {
         }
     }
 
+    
+    /** 
+     * @param event
+     * @return Commande
+     */
     public Commande processInput(KeyEvent event) {
         switch(event.getKeyCode()) {
             case KeyEvent.VK_LEFT :

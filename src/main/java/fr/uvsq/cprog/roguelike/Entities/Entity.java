@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 import fr.uvsq.cprog.roguelike.UI.Position;
 
+/**
+ * Averything that is displayed on the map is an Entity
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public abstract class Entity implements Serializable {
 
     private static final long serialVersionUID = -7460262937617263578L;
@@ -13,26 +18,51 @@ public abstract class Entity implements Serializable {
     protected Color color ;
     protected String view ;
 
+    
+    /** 
+     * @return Position
+     */
     public Position getPos() {
         return position ;
     } ;
 
+    
+    /** 
+     * @return Color
+     */
     public Color getColor() {
         return color;
     } ;
 
+    
+    /** 
+     * @return char
+     */
     public char getGlyph() {
         return glyph ;
     } ;
 
+    
+    /** 
+     * @param view
+     */
     public void setView(String view) {
         this.view = view ;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getView() {
         return this.view ; 
     }
 
+    
+    /** 
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

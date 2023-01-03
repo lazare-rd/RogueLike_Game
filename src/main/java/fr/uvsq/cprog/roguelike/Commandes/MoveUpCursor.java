@@ -2,6 +2,10 @@ package fr.uvsq.cprog.roguelike.Commandes;
 
 import fr.uvsq.cprog.roguelike.Entities.Cursor;
 
+/**
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class MoveUpCursor implements Commande{
     private Cursor cursor ;
     private int minHeigh ;

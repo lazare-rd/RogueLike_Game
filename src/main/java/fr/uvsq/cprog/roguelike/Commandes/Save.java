@@ -9,6 +9,10 @@ public class Save implements Commande{
         this.board = board ;
     }
 
+    
+    /** 
+     * @param g
+     */
     private void waitUntilUserHasClicked(TextFieldWindow g) {
         while (!(g.getUserHasCliked())) {
             try {

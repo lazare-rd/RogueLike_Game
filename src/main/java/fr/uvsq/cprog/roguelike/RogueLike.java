@@ -7,6 +7,12 @@ import java.util.NoSuchElementException;
 
 import fr.uvsq.cprog.roguelike.Commandes.*;
 
+/**
+ * Entry point in the program for the RogueLikeApp class.
+ * Is in charge of the welcome screen running, and once a game is started the board class takes over
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class RogueLike {
     private UserInterface ui ;
     private Board board ;
@@ -19,10 +25,19 @@ public class RogueLike {
         this.fileNames = this.ui.getNamesOfSavedGames();
     }
 
+    
+    /** 
+     * @return Cursor
+     */
     public Cursor getCursor() {
         return this.cursor ;
     } 
 
+    
+    /** 
+     * @param event
+     * @return Commande
+     */
     public Commande processInput(KeyEvent event) {
         switch(event.getKeyCode()) {
             case KeyEvent.VK_ENTER :
@@ -39,6 +54,11 @@ public class RogueLike {
         }
     }
 
+    
+    /** 
+     * @param f
+     * @return int[]
+     */
     private int[] getFileNamesWidth(String[] f) {
         int[] widths = new int[f.length];
         for (int i = 0 ; i < f.length ; i++) {
@@ -47,6 +67,10 @@ public class RogueLike {
         return widths ;
     }
 
+    
+    /** 
+     * @return String
+     */
     private String getFileSelected() {
         return fileNames[cursor.getPos().getY() - 17];
     }

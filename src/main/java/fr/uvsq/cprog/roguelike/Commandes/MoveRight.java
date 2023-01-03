@@ -11,7 +11,10 @@ import fr.uvsq.cprog.roguelike.Board;
 import fr.uvsq.cprog.roguelike.Entities.Coin;
 import fr.uvsq.cprog.roguelike.Entities.Door;
 
-
+/**
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class MoveRight implements Commande{
     private Figure figure ;
     private World world ;

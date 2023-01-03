@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
 
+/**
+ * A wrapper for the tuple (x, y) representing a point on a grid.
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class Position implements Serializable{
 
     private static final long serialVersionUID = -6173100208259103382L;
@@ -31,18 +36,34 @@ public class Position implements Serializable{
         this.posY = 0 ;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getX() {
         return posX ;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getY() {
         return posY ;
     }
 
+    
+    /** 
+     * @param x
+     */
     public void setX(int x) {
         this.posX = x ;
     }
 
+    
+    /** 
+     * @param y
+     */
     public void setY(int y) {
         this.posY = y ;
     }
@@ -71,6 +92,10 @@ public class Position implements Serializable{
         }
     }
 
+    
+    /** 
+     * @return Position
+     */
     public Position getPosOnTheRight() {
         int x = this.posX + 1;
         int y = this.posY ;
@@ -81,6 +106,10 @@ public class Position implements Serializable{
         }
     }
 
+    
+    /** 
+     * @return Position
+     */
     public Position getPosOnTheLeft() {
         int x = this.posX - 1;
         int y = this.posY ;
@@ -91,6 +120,10 @@ public class Position implements Serializable{
         }
     }
 
+    
+    /** 
+     * @return Position
+     */
     public Position getPosOnTop() {
         int x = this.posX ;
         int y = this.posY - 1 ;
@@ -101,6 +134,10 @@ public class Position implements Serializable{
         }
     }
 
+    
+    /** 
+     * @return Position
+     */
     public Position getPosUnder() {
         int x = this.posX ;
         int y = this.posY + 1 ;
@@ -111,14 +148,27 @@ public class Position implements Serializable{
         }
     }
 
+    
+    /** 
+     * @return int
+     */
     public static int getMaxHeight() {
         return maxHeigh ;
     }
 
+    
+    /** 
+     * @return int
+     */
     public static int getMaxWidth() {
         return maxWidth ;
     }
 
+    
+    /** 
+     * @param pos
+     * @return boolean
+     */
     public boolean equals(Position pos) {
         if (this.posX == pos.getX() && this.posY == pos.getY()) {
             return true ;

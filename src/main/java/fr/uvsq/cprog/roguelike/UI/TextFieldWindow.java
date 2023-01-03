@@ -5,6 +5,11 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.lang.Thread;
 
+/**
+ * A text field window with a save button that retrieves the input in the text field.
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class TextFieldWindow extends JFrame implements ActionListener{
     private JTextField textField ;
     private JButton saveButton = new JButton("Save");
@@ -23,6 +28,10 @@ public class TextFieldWindow extends JFrame implements ActionListener{
         saveButton.addActionListener(this);
     }
 
+    
+    /** 
+     * @param action
+     */
     public void actionPerformed(ActionEvent action) {
         if (action.getSource() == saveButton) {
             try {
@@ -36,14 +45,23 @@ public class TextFieldWindow extends JFrame implements ActionListener{
         }
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getData() {
         return this.data ;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public boolean getUserHasCliked() {
         return this.userHasCliked ;
     }
 
+    
     public void showWindow() {
         this.setLocation(10, 10);
         this.setSize(300, 300);

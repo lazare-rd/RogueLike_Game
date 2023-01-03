@@ -7,7 +7,11 @@ import asciiPanel.AsciiCharacterData;
 import fr.uvsq.cprog.roguelike.UI.UserInterface;
 import fr.uvsq.cprog.roguelike.Entities.Door;
 
-
+/**
+ * Represents a map with it's zombies and coins, the constructor generates a random map.
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class World implements Serializable{
     private int width = UserInterface.pixelsInWidth ;
     private int height = UserInterface.pixelsInHeight ; 
@@ -38,18 +42,35 @@ public class World implements Serializable{
         generateWorld();
     }
 
+    
+    /** 
+     * @return Worldstructure
+     */
     public Worldstructure getLayout() {
         return this.layout ;
     }
 
+    
+    /** 
+     * @return int[][]
+     */
     public int[][] getRoomLayout() {
         return this.roomLayout ;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getLevel() {
         return this.level ;
     }
 
+    
+    /** 
+     * @param w
+     * @return boolean
+     */
     public boolean equals(World w) {
         if (this.layout.equals(w.getLayout()) && this.level == w.getLevel()) {
             return true ;
@@ -59,6 +80,9 @@ public class World implements Serializable{
         }
     }
 
+    /**
+     * Generates a new world layout randomly. 
+     */
     private void generateWorld() {
         int w = this.layout.getRoomWidth();
         int h = this.layout.getRoomHeight();
@@ -83,6 +107,9 @@ public class World implements Serializable{
         placeDoor();
     }
 
+    /**
+     * Places the door in the room where the random world generation stopped.
+     */
     private void placeDoor() {
         int j = roomLayout[0].length - 1;
         int iBefore3 = 0 ;
@@ -117,6 +144,13 @@ public class World implements Serializable{
         }
     }
 
+    
+    /** 
+     * @param path
+     * @param w
+     * @param h
+     * @return boolean
+     */
     private boolean caseLeft(SolutionPath path, int w, int h) {
         String output = path.moveLeft();
         boolean carryOn = processPathOutput(output); 
@@ -137,6 +171,13 @@ public class World implements Serializable{
         return carryOn ;
     }
 
+    
+    /** 
+     * @param path
+     * @param w
+     * @param h
+     * @return boolean
+     */
     private boolean caseRight(SolutionPath path, int w, int h) {
         String output = path.moveRight();
         boolean carryOn = processPathOutput(output); 
@@ -157,6 +198,13 @@ public class World implements Serializable{
         return carryOn ;
     }
 
+    
+    /** 
+     * @param path
+     * @param w
+     * @param h
+     * @return boolean
+     */
     private boolean caseDown(SolutionPath path, int w, int h) {
         String output = path.moveDown() ; 
         boolean carryOn = processPathOutput(output);
@@ -171,6 +219,11 @@ public class World implements Serializable{
         return carryOn ;
     }
 
+    
+    /** 
+     * @param s
+     * @return boolean
+     */
     private boolean processPathOutput(String s) {
         switch(s) {
             case"LEFT":
@@ -186,10 +239,17 @@ public class World implements Serializable{
         }
     }
 
+    
+    /** 
+     * @return AsciiCharacterData[][]
+     */
     public AsciiCharacterData[][] generateCharGrid() {
         return this.layout.generateCharGrid();
     }
     
+    /**
+     * Fills the rest of the grid that hasn't already been filled with rooms of type 0
+     */
     private void fillVoidRooms() {
         int w = this.layout.getRoomWidth();
         int h = this.layout.getRoomHeight();

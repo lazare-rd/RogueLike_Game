@@ -10,6 +10,11 @@ import fr.uvsq.cprog.roguelike.Entities.Coin;
 import fr.uvsq.cprog.roguelike.Entities.Door;
 
 import fr.uvsq.cprog.roguelike.Board;
+
+/**
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class MoveUp implements Commande{
     private Figure figure ;
     private World world ;

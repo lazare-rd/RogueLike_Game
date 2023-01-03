@@ -5,6 +5,10 @@ import java.awt.Color;
 import fr.uvsq.cprog.roguelike.Exceptions.IllegalPositionException;
 import fr.uvsq.cprog.roguelike.UI.Position;
 
+/**
+ * @author lazare-rd
+ * @version 01/01/2023
+ */
 public class Bullet extends Entity {
 
     public Bullet(int x, int y) {
@@ -15,10 +19,5 @@ public class Bullet extends Entity {
         } catch (IllegalPositionException e) {
            e.printStackTrace();
         }
-    }
-
-    public static void erase(Bullet bullet) {
-        bullet = null ;
-        System.gc();
     }
 }
